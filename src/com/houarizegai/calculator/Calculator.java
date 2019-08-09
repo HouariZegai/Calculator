@@ -502,7 +502,7 @@ public class Calculator {
             choixColor.setText("Toggle colors");
             choixColor.setBackground(Color.GREEN.darker());
             choixColor.setForeground(Color.WHITE);
-            btnC.setBackground(Color.getColor(""));
+            btnC.setBackground(null);
             btnBack.setBackground(Color.getColor(""));
             btnMod.setBackground(Color.getColor(""));
             btnDiv.setBackground(Color.getColor(""));
