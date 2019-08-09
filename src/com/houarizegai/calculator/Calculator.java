@@ -558,13 +558,13 @@ public class Calculator {
 
             btnC.setForeground(Color.WHITE);
             btnBack.setForeground(Color.WHITE);
+
             btnMod.setForeground(Color.WHITE);
             btnDiv.setForeground(Color.WHITE);
             btnMul.setForeground(Color.WHITE);
             btnSub.setForeground(Color.WHITE);
             btnAdd.setForeground(Color.WHITE);
             btnEqual.setForeground(Color.WHITE);
-
             bool = true;
         }
 }
