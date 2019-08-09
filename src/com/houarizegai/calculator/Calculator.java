@@ -84,6 +84,8 @@ public class Calculator {
 
         inText = new JTextField("0");
         inText.setBounds(x[0],y[0],350,70);
+        inText.setEditable(false);
+        inText.setBackground(Color.WHITE);
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
         window.add(inText);
         
@@ -466,7 +468,6 @@ public class Calculator {
                 }
         });
         window.add(btnEqual);
-                
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If Click into The Red Button => End The Processus
