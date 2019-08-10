@@ -13,10 +13,16 @@ public class Calculator {
     JTextField inText,affichageCalc; // Input Text
     JButton btnC, //btnBack,
 
-    btnPow, btnMod,btnDiv,btn7,btn8,btn9,
+            btnMod,btnDiv,btn7,btn8,btn9,
             btnMul,btn4,btn5,btn6,btnSub,btn1,btn2,btn3,
-            btnAdd,btnPoint,btn0,btnEqual,choixColor;
+            btnAdd,btnPoint,btn0,btnEqual,choixColor
+
+        ,btnPow, btnRoot
+
+        ;
     char opt = ' ';             // Storage Oparator
+    // maybe change that to string for instances like log, ln, etc.
+
     boolean go = true,          // Faire Calcule Avec Opt != (=)
             addWrite = true;    // Racordé des Nombres dans l'Affichage
     double val = 0; // Storage Values For Calcule
@@ -56,18 +62,18 @@ public class Calculator {
         X = Row
         Y = Column
 
-        +-------------------+
-        |   +-----------+   |   y[0]
-        |   |           |   |
-        |   +-----------+   |
-        |                   |
-        |   C   ^   %   /   |   y[1]
-        |   7   8   9   *   |   y[2]
-        |   4   5   6   -   |   y[3]
-        |   1   2   3   +   |   y[4]
-        |   .   0     =     |   y[5]
-        +-------------------+
-         x[0] x[1] x[2] x[3]
+        +------------------------+
+        |   +---------------+    |   y[0]
+        |   |               |    |
+        |   +---------------+    |
+        |                        |
+        |   C   ^   %   /   √    |   y[1]
+        |   7   8   9   *        |   y[2]
+        |   4   5   6   -        |   y[3]
+        |   1   2   3   +        |   y[4]
+        |   .   0     =          |   y[5]
+        +------------------------+
+         x[0] x[1] x[2] x[3] x[4]
 
     */
 
@@ -81,15 +87,14 @@ public class Calculator {
         |   4   5   6   7   |   y[2]
         |   8   9   10  11  |   y[3]
         |   12  13  14  15  |   y[4]
-        |   16  17    18    |   y[5]
+        |   16  17  18  19  |   y[5]
         +-------------------+
          x[0] x[1] x[2] x[3]
 
     */
-
     Calculator () {
         window = new JFrame("Calculator");
-        window.setSize(410,600); // Height And Width Of Window
+        window.setSize(530,700); // Height And Width Of Window
         window.setLocationRelativeTo(null); // Move Window To Center
 
         Font btnFont = new Font("Helvetica", Font.PLAIN, 28);
@@ -105,20 +110,26 @@ public class Calculator {
         });
         window.add(choixColor);
 
+
+        // Column 0
+
         int wBtn = 80,      // Width Button
                 hBtn = 70,      // Height Button
                 marginX = 20,
                 marginY = 60,
                 j = -1,
                 k = -1,
-                x[] = {marginX, marginX+90, 200, 290},
-                y[] = {marginY, marginY+100, marginY+180, marginY+260, marginY+340, marginY+420};
+                x[] = {marginX, marginX+90, 200, 290, 380},
+                y[] = {marginY, marginY+100, marginY+180,
+                        marginY+260, marginY+340, marginY+420};
 
         inText = new JTextField("0");
         inText.setBounds(x[0],y[0],350,70);
         inText.setFont(new Font("Helvetica", Font.PLAIN, 33));
         inText.setEnabled(true);
         window.add(inText);
+
+        // Column 1
 
         btnC = new JButton("C");
         btnC.setBounds(x[0],y[1],wBtn,hBtn);
@@ -235,6 +246,32 @@ public class Calculator {
         });
         window.add(btnDiv);
 
+        btnRoot = new JButton("√");
+        btnRoot.setBounds(x[4], y[1], wBtn, hBtn);
+        btnRoot.setFont(btnFont);
+        btnRoot.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnRoot.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if ( Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val)) ) {
+                            inText.setText(String.valueOf((int)val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '√';
+                        go = false;
+                        addWrite = false;
+                    }
+            }
+        });
+        window.add(btnRoot);
+
+
+        // Column 2
+
         btn7 = new JButton("7");
         btn7.setBounds(x[0],y[2],wBtn,hBtn);
         btn7.setFont(btnFont);
@@ -325,6 +362,9 @@ public class Calculator {
             }
         });
         window.add(btnMul);
+
+
+        // Column 3
 
         btn4 = new JButton("4");
         btn4.setBounds(x[0],y[3],wBtn,hBtn);
@@ -418,6 +458,9 @@ public class Calculator {
         });
         window.add(btnSub);
 
+
+        // Column 4
+
         btn1 = new JButton("1");
         btn1.setBounds(x[0],y[4],wBtn,hBtn);
         btn1.setFont(btnFont);
@@ -509,6 +552,8 @@ public class Calculator {
         });
         window.add(btnAdd);
 
+        // Column 5
+
         btnPoint = new JButton(".");
         btnPoint.setBounds(x[0],y[5],wBtn,hBtn);
         btnPoint.setFont(new Font("Helvetica", Font.BOLD, 32));
@@ -577,6 +622,8 @@ public class Calculator {
         window.setVisible(true);
     }
 
+
+    // Calculation switch cases
     static double calc(double x, String input, char opt) {
         double y = Double.parseDouble(input);
         switch(opt) {
@@ -590,6 +637,8 @@ public class Calculator {
                 return x / y; // Division operation
             case '^':
                 return Math.pow(x, y); // Power operation
+            case '√':
+                return root(x,y);
             case '%':
                 return x % y; // Modulus operation
             default:
@@ -597,13 +646,27 @@ public class Calculator {
         }
     }
 
+    public static double root(double num, double root) {
+        double sq = (int) Math.sqrt(num);
+        double r = Math.pow(Math.E, Math.log(num)/root);
+        if (num < 0) {
+            return -Math.pow(Math.E, Math.log(num)/root);
+        }
+        if (sq != r && root == 2){
+            return sq;
+        }
+        return r;
+    }
+
+
     public void themeColor() {
 
         if (bool) {
 
             btnC.setBackground(Color.getColor(""));
 //            btnBack.setBackground(Color.getColor(""));
-            btnPow.setForeground(Color.BLACK);
+            btnPow.setBackground(Color.BLACK);
+            btnRoot.setBackground(Color.BLACK);
 
             btnMod.setBackground(Color.getColor(""));
             btnDiv.setBackground(Color.getColor(""));
@@ -627,6 +690,8 @@ public class Calculator {
 //            btnBack.setForeground(Color.BLACK);
 
             btnPow.setForeground(Color.BLACK);
+            btnRoot.setForeground(Color.BLACK);
+
             btnMod.setForeground(Color.BLACK);
             btnDiv.setForeground(Color.BLACK);
             btnMul.setForeground(Color.BLACK);
@@ -638,7 +703,8 @@ public class Calculator {
         } else {
             btnC.setBackground(Color.RED);
 //            btnBack.setBackground(Color.ORANGE);
-            btnPow.setForeground(Color.BLACK);
+            btnPow.setForeground(Color.PINK);
+            btnRoot.setForeground(Color.PINK);
 
             btnMod.setBackground(Color.GREEN);
             btnDiv.setBackground(Color.PINK);
@@ -660,7 +726,8 @@ public class Calculator {
 
             btnC.setForeground(Color.WHITE);
 //            btnBack.setForeground(Color.WHITE);
-            btnPow.setForeground(Color.BLACK);
+            btnPow.setForeground(Color.WHITE);
+            btnRoot.setForeground(Color.WHITE);
 
             btnMod.setForeground(Color.WHITE);
             btnDiv.setForeground(Color.WHITE);
