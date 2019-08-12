@@ -246,6 +246,15 @@ public class Calculator {
         });
         window.add(btnDiv);
 
+
+        /*
+            This is the root button.
+            The Java.lang.Math package does not have a function that takes a number to the
+            nth root; to say the least there is no known function for a number to be taken
+            to the nth root at all. Only known function is sqrt() which takes one number
+            to the second/square root of the number that is entered
+
+         */
         btnRoot = new JButton("√");
         btnRoot.setBounds(x[4], y[1], wBtn, hBtn);
         btnRoot.setFont(btnFont);
@@ -638,7 +647,7 @@ public class Calculator {
             case '^':
                 return Math.pow(x, y); // Power operation
             case '√':
-                return root(x,y);
+                return root(x, y); // Root operation, returns
             case '%':
                 return x % y; // Modulus operation
             default:
@@ -646,12 +655,57 @@ public class Calculator {
         }
     }
 
+    /**
+     * root
+     *
+     * Takes the nth root of a number.
+     *
+     * Example:
+     * cubed root of 64 is 4, user would have to enter
+     * the base number first (64) of double type followed
+     * by the double root value (3) in order to get 4
+     *
+     * @param num the number base
+     * @param root the nth root of the number base num
+     * @return r - the nth root of the number
+     */
     public static double root(double num, double root) {
+
+        /*
+            Take square root of number and check if the
+            root number is 2 and that root matches the value
+            of what it is in square root function
+
+            * Only possible if user checking for square root
+            of number *
+         */
         double sq = (int) Math.sqrt(num);
+
+        /*
+            Use the power function and take value of e to the
+            power of quotient of the log of the base number and
+            the degree of the root
+
+            This is value of r as listed below
+         */
         double r = Math.pow(Math.E, Math.log(num)/root);
+
+        /*
+            If the base number is less than 0 then multiply by -1
+            the solution for the value of r
+         */
         if (num < 0) {
-            return -Math.pow(Math.E, Math.log(num)/root);
+            r *= -1;
+            return r;
         }
+        /*
+            If value of square root function sqrt matches the value of
+            r as listed above, return the square root value to prevent most
+            actual square roots from being presented as decimals close to
+            the actual value of square root of a number
+
+            Only possible if root value is equal to 2
+         */
         if (sq != r && root == 2){
             return sq;
         }
@@ -703,6 +757,7 @@ public class Calculator {
         } else {
             btnC.setBackground(Color.RED);
 //            btnBack.setBackground(Color.ORANGE);
+
             btnPow.setForeground(Color.PINK);
             btnRoot.setForeground(Color.PINK);
 
@@ -740,6 +795,7 @@ public class Calculator {
         }
     }
 
+    // Creates a calculator object for the user once program is run
     public static void main(String[] args) {
 
         new Calculator();
