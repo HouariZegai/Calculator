@@ -709,7 +709,7 @@ public class Calculator {
         if (sq != r && root == 2){
             return sq;
         }
-        return r;
+        return (int) r+1;
     }
 
 
