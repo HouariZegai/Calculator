@@ -21,25 +21,7 @@ public class Calculator {
             addWrite = true;    // Racordé des Nombres dans l'Affichage
     double val = 0; // Storage Values For Calcule
     boolean bool = false;
-    /*
-        Mx Calculator: 
-        X = Ligne
-        Y = Column
-    
-        +-------------------+
-        |   +-----------+   |   y[0]
-        |   |           |   |
-        |   +-----------+   |
-        |                   |
-        |   C  <-   %   /   |   y[1]
-        |   7   8   9   *   |   y[2]
-        |   4   5   6   -   |   y[3]
-        |   1   2   3   +   |   y[4]
-        |   .   0     =     |   y[5]
-        +-------------------+
-         x[0] x[1] x[2] x[3]
-    
-    */
+
     
     /*    
         +-------------------+
