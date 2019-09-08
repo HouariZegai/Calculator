@@ -6,7 +6,7 @@ Very basic calculator application created by Java **Swing**.
 ### Screenshoot
 Sample           |   Colored
 :---------------------:|:-----------------
-![Calculator - screenshoots](screenshots/sample_calculator.jpg) | ![Calculator - screenshoots](screenshots/colored_calculator.jpg)
+![Calculator - screenshoot](screenshots/sample_calculator_v1.1.png) | ![Calculator - screenshoot](screenshots/colored_calculator_v1.1.png)
 
 ### Requirements 🔧
 * Java version 8 or higher.
