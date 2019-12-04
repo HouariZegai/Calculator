@@ -63,7 +63,7 @@ public class Calculator {
         
         Font btnFont = new Font("Comic Sans MS", Font.PLAIN, 28);
         
-        choixColor = new JButton();
+        //choixColor = new JButton();
         choixColor.setBounds(200, 30, 140, 18);
         choixColor.setText("Toggle colors");
         choixColor.setBackground(Color.GREEN.darker());
