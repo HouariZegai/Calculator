@@ -3,10 +3,10 @@ Very basic calculator application created by Java **Swing**.
 
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-### Screenshoot
+### Screenshots
 Sample           |   Colored
 :---------------------:|:-----------------
-![Calculator - screenshoot](screenshots/sample_calculator_v1.1.png) | ![Calculator - screenshoot](screenshots/colored_calculator_v1.1.png)
+![Calculator - screenshot](screenshots/v1.2/sample.png) | ![Calculator - screenshot](screenshots/v1.2/colored.png)
 
 ### Requirements 🔧
 * Java version 8 or higher.
@@ -17,7 +17,7 @@ Sample           |   Colored
 2. Download the repository files (project) from the download section or clone this project by typing in the bash the following command:
 
        git clone https://github.com/HouariZegai/Calculator.git
-3. Imported it in Intellij IDEA.
+3. Imported it in Intellij IDEA or any other Java IDE.
 4. Run the application :D
 
 ### Contributing 💡
