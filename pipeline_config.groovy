@@ -1,6 +1,5 @@
 
 libraries{
-    maven{
-        parameter = true
-    }
+    maven
+	node
 }
