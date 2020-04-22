@@ -2,7 +2,7 @@
 libraries{
 	maven
 	node{
-		label = 'KBNDVJEN05_PC_SUITE'
+		label = 'PMX-JENKINS-TEMPLATE'
 	}
 	scm_init
 }
