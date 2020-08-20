@@ -20,7 +20,7 @@ public class Calculator {
     private JFrame window; // Main window
     private JTextField inText; // Input text
     private JButton btnC, btnBack, btnMod, btnDiv, btn7, btn8, btn9,
-            btnMul, btn4, btn5, btn6, btnSub, btn1, btn2, btn3, btnAdd, btnPoint, btn0, btnEqual, btnRoot, btnPower, btnLog, btnSwitchThemes, btnSwitchToScientificMode;
+            btnMul, btn4, btn5, btn6, btnSub, btn1, btn2, btn3, btnAdd, btnPoint, btn0, btnEqual, btnRoot, btnPower, btnLog, btnE, btnPI, btnSwitchThemes, btnSwitchToScientificMode;
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addWrite = true; // Racordé des Nombres dans l'Affichage
@@ -547,6 +547,52 @@ public class Calculator {
         btnLog.setVisible(false);
         window.add(btnLog);
 
+        btnE = new JButton("e");
+        btnE .setBounds(x[4], y[4], BUTTON_WIDTH, BUTTON_HEIGHT);
+        btnE .setFont(smallTxtBtnFont);
+        btnE .setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnE .addActionListener(event -> {
+            repaintFont();
+            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                if (go) {
+                    val = Math.E;
+                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                        inText.setText(String.valueOf((int) val));
+                    } else {
+                        inText.setText(String.valueOf(val));
+                    }
+                    go = false;
+                    addWrite = false;
+                } else {
+                    opt = '^';
+                }
+        });
+        btnE .setVisible(false);
+        window.add(btnE );
+
+        btnPI = new JButton("π");
+        btnPI .setBounds(x[4], y[5], BUTTON_WIDTH, BUTTON_HEIGHT);
+        btnPI .setFont(smallTxtBtnFont);
+        btnPI .setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnPI .addActionListener(event -> {
+            repaintFont();
+            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                if (go) {
+                    val = Math.PI;
+                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                        inText.setText(String.valueOf((int) val));
+                    } else {
+                        inText.setText(String.valueOf(val));
+                    }
+                    go = false;
+                    addWrite = false;
+                } else {
+                    opt = '^';
+                }
+        });
+        btnPI .setVisible(false);
+        window.add(btnPI );
+
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If Click into The Red Button => End The Processus
@@ -592,6 +638,8 @@ public class Calculator {
             btnRoot.setBackground(null);
             btnLog.setBackground(null);
             btnPower.setBackground(null);
+            btnE.setBackground(null);
+            btnPI.setBackground(null);
             btnEqual.setBackground(null);
             btn0.setBackground(null);
             btn1.setBackground(null);
@@ -615,6 +663,8 @@ public class Calculator {
             btnEqual.setForeground(Color.BLACK);
             btnLog.setForeground(Color.BLACK);
             btnPower.setForeground(Color.BLACK);
+            btnE.setForeground(Color.BLACK);
+            btnPI.setForeground(Color.BLACK);
             btnRoot.setForeground(Color.BLACK);
 
             isToggleColorSelected = false;
@@ -632,6 +682,8 @@ public class Calculator {
             btnRoot.setBackground(Color.PINK);
             btnLog.setBackground(Color.PINK);
             btnPower.setBackground(Color.PINK);
+            btnE.setBackground(Color.PINK);
+            btnPI.setBackground(Color.PINK);
             btnEqual.setBackground(Color.BLUE);
             btn0.setBackground(Color.WHITE);
             btn1.setBackground(Color.WHITE);
@@ -656,6 +708,8 @@ public class Calculator {
             btnEqual.setForeground(Color.WHITE);
             btnLog.setForeground(Color.WHITE);
             btnPower.setForeground(Color.WHITE);
+            btnE.setForeground(Color.WHITE);
+            btnPI.setForeground(Color.WHITE);
             btnRoot.setForeground(Color.WHITE);
             isToggleColorSelected = true;
         }
@@ -667,12 +721,16 @@ public class Calculator {
             btnRoot.setVisible(false);
             btnPower.setVisible(false);
             btnLog.setVisible(false);
+            btnE.setVisible(false);
+            btnPI.setVisible(false);
             isScientificMode = false;
         } else {
             window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
             btnRoot.setVisible(true);
             btnPower.setVisible(true);
             btnLog.setVisible(true);
+            btnE.setVisible(true);
+            btnPI.setVisible(true);
             isScientificMode = true;
         }
     }
