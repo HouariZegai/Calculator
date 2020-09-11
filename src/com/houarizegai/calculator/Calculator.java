@@ -23,7 +23,7 @@ public class Calculator {
             btnMul, btn4, btn5, btn6, btnSub, btn1, btn2, btn3, btnAdd, btnPoint, btn0, btnEqual, btnRoot, btnPower, btnLog, btnSwitchThemes, btnSwitchToScientificMode;
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
-    private boolean addWrite = true; // Racordé des Nombres dans l'Affichage
+    private boolean addWrite = true; // RacordÃ© des Nombres dans l'Affichage
     private double val = 0; // Save value typed for calculation
     private boolean isToggleColorSelected = false;
     private boolean isScientificMode = false;
@@ -75,7 +75,7 @@ public class Calculator {
 
         btnSwitchThemes = new JButton();
         btnSwitchThemes.setBounds(230, 30, 140, 18);
-        btnSwitchThemes.setText("Toggle colors");
+        btnSwitchThemes.setText("Color Theme");
         btnSwitchThemes.setBackground(Color.GREEN.darker());
         btnSwitchThemes.setForeground(Color.WHITE);
         btnSwitchThemes.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -96,20 +96,20 @@ public class Calculator {
         int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380};
         int[] y = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 180, MARGIN_Y + 260, MARGIN_Y + 340, MARGIN_Y + 420};
 
-        inText = new JTextField("0");
+        inText = new JTextField("");
         inText.setBounds(x[0], y[0], 350, 70);
         inText.setEditable(false);
         inText.setBackground(Color.WHITE);
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
         window.add(inText);
 
-        btnC = new JButton("C");
+        btnC = new JButton("AC");
         btnC.setBounds(x[0], y[1], BUTTON_WIDTH, BUTTON_HEIGHT);
         btnC.setFont(btnFont);
         btnC.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnC.addActionListener(event -> {
             repaintFont();
-            inText.setText("0");
+            inText.setText("");
             opt = ' ';
             val = 0;
         });
@@ -127,7 +127,7 @@ public class Calculator {
                 str2.append(str.charAt(i));
             }
             if (str2.toString().equals("")) {
-                inText.setText("0");
+                inText.setText("");
             } else {
                 inText.setText(str2.toString());
             }
@@ -144,9 +144,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val)+"%");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val)+"%");
                     }
                     opt = '%';
                     go = false;
@@ -165,9 +165,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val)+"/");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val)+"/");
                     }
                     opt = '/';
                     go = false;
@@ -248,9 +248,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val)+"x");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val)+"x");
                     }
                     opt = '*';
                     go = false;
@@ -331,9 +331,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val)+"-");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val)+"-");
                     }
 
                     opt = '-';
@@ -413,11 +413,14 @@ public class Calculator {
             repaintFont();
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
+                	System.out.println(inText.getText()+"addition" +val);
                     val = calc(val, inText.getText(), opt);
+                    System.out.println(val+"kishore");
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val)+"+");
+                       
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val)+"+");
                     }
                     opt = '+';
                     go = false;
@@ -483,7 +486,7 @@ public class Calculator {
         });
         window.add(btnEqual);
 
-        btnRoot = new JButton("√");
+        btnRoot = new JButton("âˆš");
         btnRoot.setBounds(x[4], y[1], BUTTON_WIDTH, BUTTON_HEIGHT);
         btnRoot.setFont(btnFont);
         btnRoot.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -496,7 +499,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
-                    opt = '√';
+//                    opt = 'âˆš';
                     addWrite = false;
                 }
         });
@@ -557,6 +560,7 @@ public class Calculator {
         inText.setFont(inText.getFont().deriveFont(Font.BOLD));
         double y = Double.parseDouble(input);
         if (opt == '+') {
+        	
             return x + y;
         } else if (opt == '-') {
             return x - y;
@@ -579,7 +583,7 @@ public class Calculator {
 
     private void onSwitchTheme() {
         if (isToggleColorSelected) {
-            btnSwitchThemes.setText("Toggle colors");
+            btnSwitchThemes.setText("Color Theme");
             btnSwitchThemes.setBackground(Color.GREEN.darker());
             btnSwitchThemes.setForeground(Color.WHITE);
             btnC.setBackground(null);
@@ -619,7 +623,7 @@ public class Calculator {
 
             isToggleColorSelected = false;
         } else {
-            btnSwitchThemes.setText("Untoggle colors");
+            btnSwitchThemes.setText("Normal theme");
             btnSwitchThemes.setBackground(null);
             btnSwitchThemes.setForeground(Color.BLACK);
             btnC.setBackground(Color.RED);
