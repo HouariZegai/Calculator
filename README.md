@@ -1,5 +1,5 @@
 # Calculator App
-Very basic calculator application created by Core Java and **Swing**. 
+Very basic calculator application created by using Core Java and **Swing**. 
 
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
