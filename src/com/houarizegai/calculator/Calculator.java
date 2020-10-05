@@ -25,13 +25,13 @@ public class Calculator {
             btnMul, btn4, btn5, btn6, btnSub, btn1, btn2, btn3, btnAdd, btnPoint, btn0, btnEqual, btnRoot, btnPower, btnLog, btnE, btne, btnpi, btnSwitchThemes, btnSwitchToScientificMode;
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
-    private boolean addWrite = false; // Racordé des Nombres dans l'Affichage
+    private boolean addWrite = true; // Racordé des Nombres dans l'Affichage
     private double val = 0.0; // Save value typed for calculation
     private boolean isToggleColorSelected = false;
     private boolean isScientificMode = false;
-    private boolean isSymbol;
-    private int e_pi;
-    DecimalFormat df = new DecimalFormat("#.########");
+    private boolean isSymbol;//checks if a symbol is pressed
+    private int e_pi;//which symbol is pressed
+
 
     /*
         Mx Calculator:
@@ -106,8 +106,6 @@ public class Calculator {
 
 
 
-        int j = -1;
-        int k = -1;
         int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380};
         int[] y = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 180, MARGIN_Y + 260, MARGIN_Y + 340, MARGIN_Y + 420};
 
@@ -570,11 +568,14 @@ public class Calculator {
         btnRoot.setFont(btnFont);
         btnRoot.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnRoot.addActionListener(event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)|([a-z])|[α-ω]", inText.getText()))
+            if (Pattern.matches("(\\d+[.]\\d*)|(\\d+)|([a-z])|[α-ω]", inText.getText())){
                 if (go) {
-                    if(Pattern.matches("[a-z]",inText.getText())){
+                    if(Pattern.matches("[a-z]|[α-ω]",inText.getText())){
                         if(inText.getText().equals("e")){
                             val = Math.sqrt(Math.E);
+                            isSymbol=false;
+                        }else if(inText.getText().equals("π")){
+                            val = Math.sqrt(Math.PI);
                             isSymbol=false;
                         }
                     }else{
@@ -597,6 +598,12 @@ public class Calculator {
                     opt = '√';
                     addWrite = false;
                 }
+            }else{
+                inText.setText("Error");
+                opt = '√';
+                addWrite = false;
+            }
+
         });
         btnRoot.setVisible(false);
         window.add(btnRoot);
@@ -640,11 +647,14 @@ public class Calculator {
         btnLog.setFont(smallTxtBtnFont);
         btnLog.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnLog.addActionListener(event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)|([a-z])|[α-ω]", inText.getText()))
+            if (Pattern.matches("(\\d+[.]\\d*)|(\\d+)|([a-z])|[α-ω]", inText.getText())) {
                 if (go) {
                     if(Pattern.matches("[a-z]",inText.getText())){
                         if(inText.getText().equals("e")){
                             val = Math.log(Math.E);
+                            isSymbol=false;
+                        }else if(inText.getText().equals("π")){
+                            val = Math.log(Math.PI);
                             isSymbol=false;
                         }
                     }else{
@@ -666,6 +676,12 @@ public class Calculator {
                     opt = 'l';
                     addWrite = false;
                 }
+            }else{
+                inText.setText("Error");
+                opt = 'l';
+                addWrite = false;
+            }
+
         });
         btnLog.setVisible(false);
         window.add(btnLog);
