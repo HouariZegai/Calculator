@@ -686,7 +686,7 @@ public class Calculator {
         btnLog.setVisible(false);
         window.add(btnLog);
 
-        btnE=new JButton("e");
+        btnE=new JButton("e^");
         btnE.setBounds(x[4], y[4], BUTTON_WIDTH, BUTTON_HEIGHT);
         btnE.setFont(smallTxtBtnFont);
         btnE.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -718,7 +718,7 @@ public class Calculator {
                     addWrite = false;
                 }
         });
-        btnPower.setVisible(false);
+        btnE.setVisible(false);
         window.add(btnE);
 
         window.setLayout(null);
