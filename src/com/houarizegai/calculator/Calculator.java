@@ -496,7 +496,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
-                    opt = '√';
+                    opt = "\u221A";
                     addWrite = false;
                 }
         });
