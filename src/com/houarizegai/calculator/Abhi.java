@@ -1,8 +1,7 @@
 package com.houarizegai.calculator;
 
 public class Abhi {
-public static void main(String h[])
-{
-  
-}
+	public static void main(String h[]) {
+
+	}
 }
