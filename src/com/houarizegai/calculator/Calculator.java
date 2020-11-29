@@ -435,7 +435,9 @@ public class Calculator {
         btnPoint.addActionListener(event -> {
             repaintFont();
             if (addWrite) {
-                inText.setText(inText.getText() + ".");
+                if (!inText.getText().contains(".")) {
+                    inText.setText(inText.getText() + ".");
+                }
             } else {
                 inText.setText("0.");
                 addWrite = true;
