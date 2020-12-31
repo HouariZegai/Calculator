@@ -527,7 +527,7 @@ public class Calculator {
         btnPower.setVisible(false);
         window.add(btnPower);
 
-        btnLog = new JButton("log");
+        btnLog = new JButton("ln");
         btnLog.setBounds(x[4], y[3], BUTTON_WIDTH, BUTTON_HEIGHT);
         btnLog.setFont(smallTxtBtnFont);
         btnLog.setCursor(new Cursor(Cursor.HAND_CURSOR));
