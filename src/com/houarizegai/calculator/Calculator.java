@@ -1,12 +1,8 @@
-
-package com.houarizegai.calculator;
-
-import java.awt.Cursor;
-import java.awt.Font;
-import java.util.regex.Pattern;
-import java.awt.Color;
 import javax.swing.*;
-import java.lang.Math;
+import java.awt.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Calculator {
 
@@ -17,10 +13,31 @@ public class Calculator {
     private static final int MARGIN_X = 20;
     private static final int MARGIN_Y = 60;
 
-    private JFrame window; // Main window
-    private JTextField inText; // Input text
-    private JButton btnC, btnBack, btnMod, btnDiv, btn7, btn8, btn9,
-            btnMul, btn4, btn5, btn6, btnSub, btn1, btn2, btn3, btnAdd, btnPoint, btn0, btnEqual, btnRoot, btnPower, btnLog, btnSwitchThemes, btnSwitchToScientificMode;
+    private final JFrame window; // Main window
+    private final JTextField inText; // Input text
+    private final JButton btnC;
+    private final JButton btnBack;
+    private final JButton btnMod;
+    private final JButton btnDiv;
+    private final JButton btn7;
+    private final JButton btn8;
+    private final JButton btn9;
+    private final JButton btnMul;
+    private final JButton btn4;
+    private final JButton btn5;
+    private final JButton btn6;
+    private final JButton btnSub;
+    private final JButton btn1;
+    private final JButton btn2;
+    private final JButton btn3;
+    private final JButton btnAdd;
+    private final JButton btnPoint;
+    private final JButton btn0;
+    private final JButton btnEqual;
+    private final JButton btnRoot;
+    private final JButton btnPower;
+    private final JButton btnLog;
+    private final JButton btnSwitchThemes;
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addWrite = true; // Racordé des Nombres dans l'Affichage
@@ -82,7 +99,7 @@ public class Calculator {
         btnSwitchThemes.addActionListener(event -> onSwitchTheme());
         window.add(btnSwitchThemes);
 
-        btnSwitchToScientificMode = new JButton();
+        JButton btnSwitchToScientificMode = new JButton();
         btnSwitchToScientificMode.setBounds(30, 30, 140, 18);
         btnSwitchToScientificMode.setText("Scientific Mode");
         btnSwitchToScientificMode.setBackground(Color.BLUE.darker());
@@ -91,8 +108,6 @@ public class Calculator {
         btnSwitchToScientificMode.addActionListener(event -> onShowScientificMode());
         window.add(btnSwitchToScientificMode);
 
-        int j = -1;
-        int k = -1;
         int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380};
         int[] y = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 180, MARGIN_Y + 260, MARGIN_Y + 340, MARGIN_Y + 420};
 
@@ -122,15 +137,11 @@ public class Calculator {
         btnBack.addActionListener(event -> {
             repaintFont();
             String str = inText.getText();
-            StringBuilder str2 = new StringBuilder();
-            for (int i = 0; i < (str.length() - 1); i++) {
-                str2.append(str.charAt(i));
-            }
-            if (str2.toString().equals("")) {
-                inText.setText("0");
-            } else {
-                inText.setText(str2.toString());
-            }
+            String str2 = IntStream // basically does the same thing as your for loop, just using a functional paradigm
+                    .range(0, str.length() - 1)
+                    .mapToObj(i -> String.valueOf(str.charAt(i)))
+                    .collect(Collectors.joining());
+            inText.setText(str2.equals("") ? "0" : str2); // replaced the if else with a ? : operator :)
         });
         window.add(btnBack);
 
@@ -505,6 +516,7 @@ public class Calculator {
         btnRoot.setVisible(false);
         window.add(btnRoot);
 
+
         btnPower = new JButton("pow");
         btnPower.setBounds(x[4], y[2], BUTTON_WIDTH, BUTTON_HEIGHT);
         btnPower.setFont(smallTxtBtnFont);
@@ -553,6 +565,10 @@ public class Calculator {
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If Click into The Red Button => End The Processus
         window.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new Calculator();
     }
 
     private double calc(double x, String input, char opt) {
@@ -674,9 +690,5 @@ public class Calculator {
             btnLog.setVisible(true);
             isScientificMode = true;
         }
-    }
-
-    public static void main(String[] args) {
-        new Calculator();
     }
 }
