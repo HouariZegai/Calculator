@@ -8,6 +8,7 @@ import java.awt.Color;
 import javax.swing.*;
 import java.lang.Math;
 
+
 public class Calculator {
 
     private static final int WINDOW_WIDTH = 410;
@@ -63,8 +64,11 @@ public class Calculator {
          x[0] x[1] x[2] x[3]
     
     */
-
-    private Calculator() {
+    
+    /*
+    @protected instead of private in order to enable unit testing
+    */
+    protected Calculator() {
         window = new JFrame("Calculator");
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT); // Set the width and the Height of the window
         window.setLocationRelativeTo(null); // Move Window To Center
@@ -554,8 +558,12 @@ public class Calculator {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // If Click into The Red Button => End The Processus
         window.setVisible(true);
     }
-
-    private double calc(double x, String input, char opt) {
+    
+    /*
+     * @protected
+     * tested the method for each @opt 
+     * */
+    protected double calc(double x, String input, char opt) {
         inText.setFont(inText.getFont().deriveFont(Font.BOLD));
         double y = Double.parseDouble(input);
         inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
