@@ -12,18 +12,20 @@ public class Calculator {
 
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
-    private static final int BUTTON_WIDTH = 80; // Button width
-    private static final int BUTTON_HEIGHT = 70; // Button height
+    private static final int BUTTON_WIDTH = 80;
+    private static final int BUTTON_HEIGHT = 70;
     private static final int MARGIN_X = 20;
     private static final int MARGIN_Y = 60;
 
     private JFrame window; // Main window
     private JTextField inText; // Input text
-    private JButton btnC, btnBack, btnMod, btnDiv, btn7, btn8, btn9,
-            btnMul, btn4, btn5, btn6, btnSub, btn1, btn2, btn3, btnAdd, btnPoint, btn0, btnEqual, btnRoot, btnPower, btnLog, btnSwitchThemes, btnSwitchToScientificMode;
+    private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
+            btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
+            btnPoint, btnEqual, btnRoot, btnPower, btnLog,
+            btnSwitchThemes, btnSwitchToScientificMode;
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
-    private boolean addWrite = true; // Racordé des Nombres dans l'Affichage
+    private boolean addWrite = true; // Connect numbers in display
     private double val = 0; // Save value typed for calculation
     private boolean isToggleColorSelected = false;
     private boolean isScientificMode = false;
@@ -64,7 +66,7 @@ public class Calculator {
     
     */
 
-    private Calculator() {
+    public Calculator() {
         window = new JFrame("Calculator");
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT); // Set the width and the Height of the window
         window.setLocationRelativeTo(null); // Move Window To Center
@@ -555,7 +557,7 @@ public class Calculator {
         window.setVisible(true);
     }
 
-    private double calc(double x, String input, char opt) {
+    public double calc(double x, String input, char opt) {
         inText.setFont(inText.getFont().deriveFont(Font.BOLD));
         double y = Double.parseDouble(input);
         inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
