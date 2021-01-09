@@ -7,9 +7,9 @@ Very basic calculator application created by Java **Swing**.
 Please ⭐️ this repo and share it with others
 
 ### Screenshots
-Sample           |   Colored
-:---------------------:|:-----------------
-![Calculator - screenshot](screenshots/v1.2/sample.PNG) | ![Calculator - screenshot](screenshots/v1.2/colored.PNG)
+Scientific / Simple |  Standard / Colored
+:------------------:|:-------------------
+![Calculator - screenshot](screenshots/simple.PNG) | ![Calculator - screenshot](screenshots/colored.PNG)
 
 ### Requirements 🔧
 * Java version 8 or higher.
