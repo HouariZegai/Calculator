@@ -18,7 +18,7 @@ public class Calculator {
     private static final int MARGIN_Y = 60;
 
     private JFrame window; // Main window
-    private JTextField inText; // Input text
+    private JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
             btnPoint, btnEqual, btnRoot, btnPower, btnLog,
@@ -26,7 +26,7 @@ public class Calculator {
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addWrite = true; // Connect numbers in display
-    private double val = 0; // Save value typed for calculation
+    private double val = 0; // Save the value typed for calculation
     private boolean isToggleColorSelected = false;
     private boolean isScientificMode = false;
 
