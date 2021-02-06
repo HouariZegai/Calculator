@@ -447,6 +447,7 @@ public class Calculator {
         btn.setFont(new Font("Comic Sans MS", Font.PLAIN, 28));
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.addActionListener(event);
+        btn.setFocusable(false);
         window.add(btn);
 
         return btn;
