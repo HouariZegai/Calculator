@@ -20,7 +20,7 @@ public class Calculator {
     private static final int MARGIN_Y = 60;
 
     private JFrame window; // Main window
-    private JComboBox<String> comboCalcType, comboTheme;
+    private JComboBox<String> comboCalcType, comboTheme ;
     private JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
