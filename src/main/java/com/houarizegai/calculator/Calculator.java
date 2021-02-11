@@ -2,12 +2,12 @@ package com.houarizegai.calculator;
 
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
+import java.awt.event.*;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.awt.Color;
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
 import java.lang.Math;
 
 public class Calculator {
@@ -26,12 +26,14 @@ public class Calculator {
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
             btnPoint, btnEqual, btnRoot, btnPower, btnLog;
 
+
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addWrite = true; // Connect numbers in display
     private double val = 0; // Save the value typed for calculation
 
-    /*
+
+/*
         Mx Calculator: 
         X = Row
         Y = Column
@@ -67,13 +69,15 @@ public class Calculator {
     
     */
 
+
+
     public Calculator() {
+
         window = new JFrame("Calculator");
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null); // Move window to center
 
         comboTheme = initCombo(new String[]{"Simple", "Colored"}, 230, 30, "Theme", themeSwitchEventConsumer);
-
         comboCalcType = initCombo(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type", calcTypeSwitchEventConsumer);
 
         int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380};
@@ -84,350 +88,134 @@ public class Calculator {
         inText.setEditable(false);
         inText.setBackground(Color.WHITE);
         inText.setFont(new Font("Comic Sans MS", Font.PLAIN, 33));
+        inText.addKeyListener(new CustomKeyListener(this)); // keylistener for inText
+
+
+
         window.add(inText);
 
         btnC = initBtn("C", x[0], y[1], event -> {
             repaintFont();
-            inText.setText("0");
-            opt = ' ';
-            val = 0;
+            set_action("C");
         });
 
         btnBack = initBtn("<-", x[1], y[1], event -> {
             repaintFont();
-            String str = inText.getText();
-            StringBuilder str2 = new StringBuilder();
-            for (int i = 0; i < (str.length() - 1); i++) {
-                str2.append(str.charAt(i));
-            }
-            if (str2.toString().equals("")) {
-                inText.setText("0");
-            } else {
-                inText.setText(str2.toString());
-            }
+            set_action("<-");
         });
 
         btnMod = initBtn("%", x[2], y[1], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '%';
-                    go = false;
-                    addWrite = false;
-                }
+            set_action("%");
         });
 
         btnDiv = initBtn("/", x[3], y[1], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '/';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '/';
-                }
+           set_action("/");
         });
 
         btn7 = initBtn("7", x[0], y[2], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("7");
-                } else {
-                    inText.setText(inText.getText() + "7");
-                }
-            } else {
-                inText.setText("7");
-                addWrite = true;
-            }
-            go = true;
+            set_action("7");
         });
 
         btn8 = initBtn("8", x[1], y[2], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("8");
-                } else {
-                    inText.setText(inText.getText() + "8");
-                }
-            } else {
-                inText.setText("8");
-                addWrite = true;
-            }
-            go = true;
+            set_action("8");
         });
 
         btn9 = initBtn("9", x[2], y[2], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("9");
-                } else {
-                    inText.setText(inText.getText() + "9");
-                }
-            } else {
-                inText.setText("9");
-                addWrite = true;
-            }
-            go = true;
+            set_action("9");
         });
 
         btnMul = initBtn("*", x[3], y[2], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '*';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '*';
-                }
+            set_action("*");
         });
 
         btn4 = initBtn("4", x[0], y[3], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("4");
-                } else {
-                    inText.setText(inText.getText() + "4");
-                }
-            } else {
-                inText.setText("4");
-                addWrite = true;
-            }
-            go = true;
+            set_action("4");
         });
 
         btn5 = initBtn("5", x[1], y[3], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("5");
-                } else {
-                    inText.setText(inText.getText() + "5");
-                }
-            } else {
-                inText.setText("5");
-                addWrite = true;
-            }
-            go = true;
+            set_action("5");
         });
 
         btn6 = initBtn("6", x[2], y[3], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("6");
-                } else {
-                    inText.setText(inText.getText() + "6");
-                }
-            } else {
-                inText.setText("6");
-                addWrite = true;
-            }
-            go = true;
+            set_action("6");
         });
 
         btnSub = initBtn("-", x[3], y[3], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-
-                    opt = '-';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '-';
-                }
+            set_action("-");
         });
 
         btn1 = initBtn("1", x[0], y[4], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("1");
-                } else {
-                    inText.setText(inText.getText() + "1");
-                }
-            } else {
-                inText.setText("1");
-                addWrite = true;
-            }
-            go = true;
+            set_action("1");
         });
 
         btn2 = initBtn("2", x[1], y[4], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("2");
-                } else {
-                    inText.setText(inText.getText() + "2");
-                }
-            } else {
-                inText.setText("2");
-                addWrite = true;
-            }
-            go = true;
+            set_action("2");
         });
 
         btn3 = initBtn("3", x[2], y[4], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("3");
-                } else {
-                    inText.setText(inText.getText() + "3");
-                }
-            } else {
-                inText.setText("3");
-                addWrite = true;
-            }
-            go = true;
+            set_action("3");
         });
 
         btnAdd = initBtn("+", x[3], y[4], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '+';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '+';
-                }
+            set_action("+");
         });
 
         btnPoint = initBtn(".", x[0], y[5], event -> {
             repaintFont();
-            if (addWrite) {
-                if (!inText.getText().contains(".")) {
-                    inText.setText(inText.getText() + ".");
-                }
-            } else {
-                inText.setText("0.");
-                addWrite = true;
-            }
-            go = true;
+            set_action(".");
         });
 
         btn0 = initBtn("0", x[1], y[5], event -> {
             repaintFont();
-            if (addWrite) {
-                if (Pattern.matches("[0]*", inText.getText())) {
-                    inText.setText("0");
-                } else {
-                    inText.setText(inText.getText() + "0");
-                }
-            } else {
-                inText.setText("0");
-                addWrite = true;
-            }
-            go = true;
+            set_action("0");
         });
 
         btnEqual = initBtn("=", x[2], y[5], event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '=';
-                    addWrite = false;
-                }
+            set_action("=");
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
         btnRoot = initBtn("√", x[4], y[1], event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = Math.sqrt(Double.parseDouble(inText.getText()));
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '√';
-                    addWrite = false;
-                }
+           set_action("√");
         });
         btnRoot.setVisible(false);
 
         btnPower = initBtn("pow", x[4], y[2], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = calc(val, inText.getText(), opt);
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = '^';
-                    go = false;
-                    addWrite = false;
-                } else {
-                    opt = '^';
-                }
+            set_action("pow");
         });
         btnPower.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
         btnPower.setVisible(false);
 
         btnLog = initBtn("ln", x[4], y[3], event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
-                if (go) {
-                    val = Math.log(Double.parseDouble(inText.getText()));
-                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
-                    } else {
-                        inText.setText(String.valueOf(val));
-                    }
-                    opt = 'l';
-                    addWrite = false;
-                }
+            set_action("ln");
         });
+
         btnLog.setVisible(false);
 
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close button clicked? = End The process
         window.setVisible(true);
+        Action action = inText.getActionMap().get(DefaultEditorKit.beepAction);
+        action.setEnabled(false);
+        inText.requestFocusInWindow();
+
+
     }
 
     private JComboBox<String> initCombo(String[] items, int x, int y, String toolTip, Consumer consumerEvent) {
@@ -473,7 +261,326 @@ public class Calculator {
                 return y;
         }
     }
+    public void set_action(String ch){
 
+        switch (ch){
+            case "0":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("0");
+                    } else {
+                        inText.setText(inText.getText() + "0");
+                    }
+                } else {
+                    inText.setText("0");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "1":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("1");
+                    } else {
+                        inText.setText(inText.getText() + "1");
+                    }
+                } else {
+                    inText.setText("1");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "2":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("2");
+                    } else {
+                        inText.setText(inText.getText() + "2");
+                    }
+                } else {
+                    inText.setText("2");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "3":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("3");
+                    } else {
+                        inText.setText(inText.getText() + "3");
+                    }
+                } else {
+                    inText.setText("3");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "4":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("4");
+                    } else {
+                        inText.setText(inText.getText() + "4");
+                    }
+                } else {
+                    inText.setText("4");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "5":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("5");
+                    } else {
+                        inText.setText(inText.getText() + "5");
+                    }
+                } else {
+                    inText.setText("5");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "6":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("6");
+                    } else {
+                        inText.setText(inText.getText() + "6");
+                    }
+                } else {
+                    inText.setText("6");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "7":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("7");
+                    } else {
+                        inText.setText(inText.getText() + "7");
+                    }
+                } else {
+                    inText.setText("7");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+            case "8":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("8");
+                    } else {
+                        inText.setText(inText.getText() + "8");
+                    }
+                } else {
+                    inText.setText("8");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "9":
+                if (addWrite) {
+                    if (Pattern.matches("[0]*", inText.getText())) {
+                        inText.setText("9");
+                    } else {
+                        inText.setText(inText.getText() + "9");
+                    }
+                } else {
+                    inText.setText("9");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+            case "<-":
+                String str = inText.getText();
+                StringBuilder str2 = new StringBuilder();
+                for (int i = 0; i < (str.length() - 1); i++) {
+                    str2.append(str.charAt(i));
+                }
+                if (str2.toString().equals("")) {
+                    inText.setText("0");
+                } else {
+                    inText.setText(str2.toString());
+                }
+            break;
+
+            case "C":
+                inText.setText("0");
+                opt = ' ';
+                val = 0;
+            break;
+
+            case "ln":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = Math.log(Double.parseDouble(inText.getText()));
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = 'l';
+                        addWrite = false;
+                    }
+            break;
+
+            case "pow":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '^';
+                        go = false;
+                        addWrite = false;
+                    } else {
+                        opt = '^';
+                    }
+            break;
+
+            case "√":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = Math.sqrt(Double.parseDouble(inText.getText()));
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '√';
+                        addWrite = false;
+                    }
+
+            break;
+
+            case "*":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '*';
+                        go = false;
+                        addWrite = false;
+                    } else {
+                        opt = '*';
+                    }
+            break;
+
+            case "=":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '=';
+                        addWrite = false;
+                    }
+            break;
+
+            case "%":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '%';
+                        go = false;
+                        addWrite = false;
+                    }
+            break;
+
+            case "/":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '/';
+                        go = false;
+                        addWrite = false;
+                    } else {
+                        opt = '/';
+                    }
+            break;
+
+            case "-":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+
+                        opt = '-';
+                        go = false;
+                        addWrite = false;
+                    } else {
+                        opt = '-';
+                    }
+
+            break;
+
+            case "+":
+                if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                    if (go) {
+                        val = calc(val, inText.getText(), opt);
+                        if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                            inText.setText(String.valueOf((int) val));
+                        } else {
+                            inText.setText(String.valueOf(val));
+                        }
+                        opt = '+';
+                        go = false;
+                        addWrite = false;
+                    } else {
+                        opt = '+';
+                    }
+            break;
+
+            case ".":
+                if (addWrite) {
+                    if (!inText.getText().contains(".")) {
+                        inText.setText(inText.getText() + ".");
+                    }
+                } else {
+                    inText.setText("0.");
+                    addWrite = true;
+                }
+                go = true;
+            break;
+
+        }
+    }
     private void repaintFont() {
         inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
     }
