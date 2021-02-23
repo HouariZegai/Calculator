@@ -20,7 +20,7 @@ public class Calculator {
     private static final int MARGIN_Y = 60;
 
     private JFrame window; // Main window
-    private JComboBox<String> comboCalcType, comboTheme ;
+    private JComboBox<String> comboCalcType, comboTheme;
     private JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
@@ -505,7 +505,7 @@ public class Calculator {
         String selectedTheme = (String) event.getItem();
         switch (selectedTheme) {
             case "Simple":
-               window.getContentPane().setBackground(null);
+                window.getContentPane().setBackground(null);
                 btnC.setBackground(null);
                 btnBack.setBackground(null);
                 btnMod.setBackground(null);
@@ -578,42 +578,45 @@ public class Calculator {
                 btnPower.setForeground(Color.WHITE);
                 btnRoot.setForeground(Color.WHITE);
                 break;
-                case "DarkTheme":
-                window.getContentPane().setBackground(new Color(68, 68, 68));
-                btn0.setBackground(new Color(171,171,171));
-                btn1.setBackground(new Color(171,171,171));
-                btn2.setBackground(new Color(171,171,171));
-                btn3.setBackground(new Color(171,171,171));
-                btn4.setBackground(new Color(171,171,171));
-                btn5.setBackground(new Color(171,171,171));
-                btn6.setBackground(new Color(171,171,171));
-                btn7.setBackground(new Color(171,171,171));
-                btn8.setBackground(new Color(171,171,171));
-                btn9.setBackground(new Color(171,171,171));
-                btnPoint.setBackground(new Color(171,171,171));
+            case "DarkTheme":
+                final Color primaryDarkColor = new Color(141, 38, 99);
+                final Color secondaryDarkColor = new Color(171, 171, 171);
 
-                btnC.setForeground(new Color(171,171,171));
-                btnBack.setForeground(new Color(171,171,171));
-                btnMod.setForeground(new Color(171,171,171));
-                btnDiv.setForeground(new Color(171,171,171));
-                btnMul.setForeground(new Color(171,171,171));
-                btnSub.setForeground(new Color(171,171,171));
-                btnAdd.setForeground(new Color(171,171,171));
-                btnEqual.setForeground(new Color(171,171,171));
-                btnLog.setForeground(new Color(171,171,171));
-                btnPower.setForeground(new Color(171,171,171));
-                btnRoot.setForeground(new Color(171,171,171));
-                btnC.setBackground(new Color(141,38,99));
-                btnBack.setBackground(new Color(141,38,99));
-                btnMod.setBackground(new Color(141,38,99));
-                btnDiv.setBackground(new Color(141,38,99));
-                btnMul.setBackground(new Color(141,38,99));
-                btnSub.setBackground(new Color(141,38,99));
-                btnAdd.setBackground(new Color(141,38,99));
-                btnRoot.setBackground(new Color(141,38,99));
-                btnLog.setBackground(new Color(141,38,99));
-                btnPower.setBackground(new Color(141,38,99));
-                btnEqual.setBackground(new Color(141,38,99));
+                window.getContentPane().setBackground(new Color(68, 68, 68));
+                btn0.setBackground(secondaryDarkColor);
+                btn1.setBackground(secondaryDarkColor);
+                btn2.setBackground(secondaryDarkColor);
+                btn3.setBackground(secondaryDarkColor);
+                btn4.setBackground(secondaryDarkColor);
+                btn5.setBackground(secondaryDarkColor);
+                btn6.setBackground(secondaryDarkColor);
+                btn7.setBackground(secondaryDarkColor);
+                btn8.setBackground(secondaryDarkColor);
+                btn9.setBackground(secondaryDarkColor);
+                btnPoint.setBackground(secondaryDarkColor);
+
+                btnC.setForeground(secondaryDarkColor);
+                btnBack.setForeground(secondaryDarkColor);
+                btnMod.setForeground(secondaryDarkColor);
+                btnDiv.setForeground(secondaryDarkColor);
+                btnMul.setForeground(secondaryDarkColor);
+                btnSub.setForeground(secondaryDarkColor);
+                btnAdd.setForeground(secondaryDarkColor);
+                btnEqual.setForeground(secondaryDarkColor);
+                btnLog.setForeground(secondaryDarkColor);
+                btnPower.setForeground(secondaryDarkColor);
+                btnRoot.setForeground(secondaryDarkColor);
+                btnC.setBackground(primaryDarkColor);
+                btnBack.setBackground(primaryDarkColor);
+                btnMod.setBackground(primaryDarkColor);
+                btnDiv.setBackground(primaryDarkColor);
+                btnMul.setBackground(primaryDarkColor);
+                btnSub.setBackground(primaryDarkColor);
+                btnAdd.setBackground(primaryDarkColor);
+                btnRoot.setBackground(primaryDarkColor);
+                btnLog.setBackground(primaryDarkColor);
+                btnPower.setBackground(primaryDarkColor);
+                btnEqual.setBackground(primaryDarkColor);
         }
     };
 
