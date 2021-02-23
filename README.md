@@ -1,5 +1,5 @@
 # Calculator App
-Very basic calculator application created by Java **Swing**. 
+A very basic calculator application created with Java **Swing**. 
 
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -7,9 +7,9 @@ Very basic calculator application created by Java **Swing**.
 Please ⭐️ this repo and share it with others
 
 ### Screenshots
-Scientific / Simple |  Standard / Colored
+Scientific / Dark |  Standard / Colored
 :------------------:|:-------------------
-![Calculator - screenshot](screenshots/simple.PNG) | ![Calculator - screenshot](screenshots/colored.PNG)
+![Calculator - screenshot](screenshots/dark.PNG) | ![Calculator - screenshot](screenshots/colored.PNG)
 
 ### Requirements 🔧
 * Java version 8 or higher.

@@ -77,7 +77,12 @@ public class Calculator {
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null); // Move window to center
 
+//<<<<<<< LukaSt99
         comboTheme = initCombo(new String[]{"Simple", "Colored"}, 230, 30, "Theme", themeSwitchEventConsumer);
+//=======
+        comboTheme = initCombo(new String[]{"Simple", "Colored", "DarkTheme"}, 230, 30, "Theme", themeSwitchEventConsumer);
+
+//>>>>>>> master
         comboCalcType = initCombo(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type", calcTypeSwitchEventConsumer);
 
         int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380};
@@ -235,6 +240,7 @@ public class Calculator {
         btn.setFont(new Font("Comic Sans MS", Font.PLAIN, 28));
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.addActionListener(event);
+        btn.setFocusable(false);
         window.add(btn);
 
         return btn;
@@ -611,6 +617,7 @@ public class Calculator {
         String selectedTheme = (String) event.getItem();
         switch (selectedTheme) {
             case "Simple":
+                window.getContentPane().setBackground(null);
                 btnC.setBackground(null);
                 btnBack.setBackground(null);
                 btnMod.setBackground(null);
@@ -647,6 +654,7 @@ public class Calculator {
                 btnRoot.setForeground(Color.BLACK);
                 break;
             case "Colored":
+                window.getContentPane().setBackground(null);
                 btnC.setBackground(Color.RED);
                 btnBack.setBackground(Color.ORANGE);
                 btnMod.setBackground(Color.GREEN);
@@ -682,6 +690,45 @@ public class Calculator {
                 btnPower.setForeground(Color.WHITE);
                 btnRoot.setForeground(Color.WHITE);
                 break;
+            case "DarkTheme":
+                final Color primaryDarkColor = new Color(141, 38, 99);
+                final Color secondaryDarkColor = new Color(171, 171, 171);
+
+                window.getContentPane().setBackground(new Color(68, 68, 68));
+                btn0.setBackground(secondaryDarkColor);
+                btn1.setBackground(secondaryDarkColor);
+                btn2.setBackground(secondaryDarkColor);
+                btn3.setBackground(secondaryDarkColor);
+                btn4.setBackground(secondaryDarkColor);
+                btn5.setBackground(secondaryDarkColor);
+                btn6.setBackground(secondaryDarkColor);
+                btn7.setBackground(secondaryDarkColor);
+                btn8.setBackground(secondaryDarkColor);
+                btn9.setBackground(secondaryDarkColor);
+                btnPoint.setBackground(secondaryDarkColor);
+
+                btnC.setForeground(secondaryDarkColor);
+                btnBack.setForeground(secondaryDarkColor);
+                btnMod.setForeground(secondaryDarkColor);
+                btnDiv.setForeground(secondaryDarkColor);
+                btnMul.setForeground(secondaryDarkColor);
+                btnSub.setForeground(secondaryDarkColor);
+                btnAdd.setForeground(secondaryDarkColor);
+                btnEqual.setForeground(secondaryDarkColor);
+                btnLog.setForeground(secondaryDarkColor);
+                btnPower.setForeground(secondaryDarkColor);
+                btnRoot.setForeground(secondaryDarkColor);
+                btnC.setBackground(primaryDarkColor);
+                btnBack.setBackground(primaryDarkColor);
+                btnMod.setBackground(primaryDarkColor);
+                btnDiv.setBackground(primaryDarkColor);
+                btnMul.setBackground(primaryDarkColor);
+                btnSub.setBackground(primaryDarkColor);
+                btnAdd.setBackground(primaryDarkColor);
+                btnRoot.setBackground(primaryDarkColor);
+                btnLog.setBackground(primaryDarkColor);
+                btnPower.setBackground(primaryDarkColor);
+                btnEqual.setBackground(primaryDarkColor);
         }
     };
 
