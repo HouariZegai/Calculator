@@ -24,7 +24,7 @@ public class Calculator {
     private JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
-            btnPoint, btnEqual, btnRoot, btnPower, btnLog;
+            btnPoint, btnEqual, btnRoot, btnPower, btnLog, btnSin;
 
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
@@ -383,7 +383,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
-                    opt = '√';
+                    opt = '"';
                     addWrite = false;
                 }
         });
@@ -423,7 +423,22 @@ public class Calculator {
                 }
         });
         btnLog.setVisible(false);
-
+//Trigonometric Sin
+        btnSin = initBtn("Sin", x[4], y[4], event -> {
+            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                if (go) {
+                    val = Math.sin(Double.parseDouble(inText.getText()));
+                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                        inText.setText(String.valueOf((int) val));
+                    } else {
+                        inText.setText(String.valueOf(val));
+                    }
+                    opt = 'S';
+                    addWrite = false;
+                }
+        });
+      //  btnSin.setVisible(false);
+// end Sin        
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close button clicked? = End The process
@@ -469,6 +484,8 @@ public class Calculator {
                 return x % y;
             case '^':
                 return Math.pow(x, y);
+            case 'S':
+                return Math.sin(x);
             default:
                 inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
                 return y;

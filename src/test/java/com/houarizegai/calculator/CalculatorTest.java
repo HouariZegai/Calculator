@@ -19,6 +19,7 @@ class CalculatorTest {
     @Test
     void testCalc() {
         double first = 3;
+        String non = "";
         String second = "5";
 
         try {
@@ -28,6 +29,7 @@ class CalculatorTest {
             Assertions.assertEquals(0.6, calculator.calc(first, second, '/'));
             Assertions.assertEquals(3d, calculator.calc(first, second, '%'));
             Assertions.assertEquals(243, calculator.calc(first, second, '^'));
+            Assertions.assertEquals(0.05233595624294383272211862960908, calculator.calc(first,non,'S'));
         } catch (Exception e) {
             e.printStackTrace();
         }
