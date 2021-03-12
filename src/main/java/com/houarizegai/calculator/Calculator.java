@@ -251,7 +251,7 @@ public class Calculator {
 
         btnSub = initBtn("-", x[3], y[3], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (Pattern.matches("^-?[0-9]\d*(\.\d+)?$", inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -315,7 +315,7 @@ public class Calculator {
 
         btnAdd = initBtn("+", x[3], y[4], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (Pattern.matches("^-?[0-9]\d*(\.\d+)?$", inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
