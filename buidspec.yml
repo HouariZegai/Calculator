@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - mvn restore
+      - mvn tool install --global mvn-sonarscanner
+    finally:
+      - echo This always runs even if the update or install command fails 
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...
+      - docker login -u "umang2608" -p "Umang@123"
+    finally:
+      - echo This always runs even if the login command fails
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - mvn build
+    finally:
+      - echo This always runs even if the install command fails
+  post_build:
+    commands:
+      - echo Entered the post_build phase...
+      - mvn publish -o ./PublishOutput
+      - docker build -t dotnetbuild:1 .
+      - docker tag dotnetbuild:1 umang2608/dotnetbuild:1 
+      - docker push umang2608/dotnetbuild:1
