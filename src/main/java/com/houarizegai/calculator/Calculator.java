@@ -72,7 +72,7 @@ public class Calculator {
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null); // Move window to center
 
-        comboTheme = initCombo(new String[]{"Simple", "Colored", "DarkTheme"}, 230, 30, "Theme", themeSwitchEventConsumer);
+        comboTheme = initCombo(new String[]{"Simple", "Colored", "DarkTheme", "Gilded"}, 230, 30, "Theme", themeSwitchEventConsumer);
 
         comboCalcType = initCombo(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type", calcTypeSwitchEventConsumer);
 
@@ -617,6 +617,50 @@ public class Calculator {
                 btnLog.setBackground(primaryDarkColor);
                 btnPower.setBackground(primaryDarkColor);
                 btnEqual.setBackground(primaryDarkColor);
+                break;
+
+            case "Gilded":
+                final Color primaryGColor = new Color(135,108,0);
+                final Color secondaryGColor = new Color(255, 247, 217);
+
+                window.getContentPane().setBackground(new Color(230, 185, 7));
+                btn0.setBackground(secondaryGColor);
+                btn1.setBackground(secondaryGColor);
+                btn2.setBackground(secondaryGColor);
+                btn3.setBackground(secondaryGColor);
+                btn4.setBackground(secondaryGColor);
+                btn5.setBackground(secondaryGColor);
+                btn6.setBackground(secondaryGColor);
+                btn7.setBackground(secondaryGColor);
+                btn8.setBackground(secondaryGColor);
+                btn9.setBackground(secondaryGColor);
+                btnPoint.setBackground(secondaryGColor);
+
+                btnC.setForeground(secondaryGColor);
+                btnBack.setForeground(secondaryGColor);
+                btnMod.setForeground(secondaryGColor);
+                btnDiv.setForeground(secondaryGColor);
+                btnMul.setForeground(secondaryGColor);
+                btnSub.setForeground(secondaryGColor);
+                btnAdd.setForeground(secondaryGColor);
+                btnEqual.setForeground(secondaryGColor);
+                btnLog.setForeground(secondaryGColor);
+                btnPower.setForeground(secondaryGColor);
+                btnRoot.setForeground(secondaryGColor);
+                btnC.setBackground(primaryGColor);
+                btnBack.setBackground(primaryGColor);
+                btnMod.setBackground(primaryGColor);
+                btnDiv.setBackground(primaryGColor);
+                btnMul.setBackground(primaryGColor);
+                btnSub.setBackground(primaryGColor);
+                btnAdd.setBackground(primaryGColor);
+                btnRoot.setBackground(primaryGColor);
+                btnLog.setBackground(primaryGColor);
+                btnPower.setBackground(primaryGColor);
+                btnEqual.setBackground(primaryGColor);
+
+
+
         }
     };
 
