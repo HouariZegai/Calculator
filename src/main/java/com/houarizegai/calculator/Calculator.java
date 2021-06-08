@@ -24,7 +24,7 @@ public class Calculator {
     private JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
-            btnPoint, btnEqual, btnRoot, btnPower, btnLog;
+            btnPoint, btnEqual, btnRoot, btnPower, btnLog, btnDecimal, btnBinary,btntan;
 
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
@@ -76,7 +76,7 @@ public class Calculator {
 
         comboCalcType = initCombo(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type", calcTypeSwitchEventConsumer);
 
-        int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380};
+        int[] x = {MARGIN_X, MARGIN_X + 90, 200, 290, 380, 470};
         int[] y = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 180, MARGIN_Y + 260, MARGIN_Y + 340, MARGIN_Y + 420};
 
         inText = new JTextField("0");
@@ -424,6 +424,34 @@ public class Calculator {
         });
         btnLog.setVisible(false);
 
+        //converting Binary to decimal
+
+        btnDecimal=initBtn("Dc",x[5],y[1], event -> {
+            String binary=inText.getText();
+            String answer=binary2decimal(binary);
+            inText.setText(answer);
+        });
+        btnDecimal.setVisible(false);
+
+        //converting Decimal to Binary
+        btnBinary=initBtn("Bi",x[5],y[2], event -> {
+            int decimal=Integer.parseInt(inText.getText());
+            String answer=decimal2binary(decimal);
+            inText.setText(answer);
+        });
+        btnBinary.setVisible(false);
+
+        //converting number to tan
+        btntan=initBtn("tan",x[5],y[3], event -> {
+            double number=Double.parseDouble(inText.getText());
+            double tan=Math.tan(number);
+            inText.setText(String.valueOf(tan));
+        });
+        btntan.setVisible(false);
+
+
+
+
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close button clicked? = End The process
@@ -451,6 +479,30 @@ public class Calculator {
         window.add(btn);
 
         return btn;
+    }
+
+    public String binary2decimal(String binary){
+        int ans=0,count=0;
+        for(int i=binary.length()-1;i>=0;i--){
+            switch (binary.charAt(i)){
+                case'1':ans+=Math.pow(2,count);break;
+                case '0':break;
+                default: inText.setText("Only input binary 0 and 1");
+            }
+            count++;
+        }
+        return Math.abs(ans)+"";
+    }
+
+    public String decimal2binary(int decimal){
+        String answer="";
+        int remainder;
+        while(decimal>0){
+            remainder=decimal%2;
+            decimal=decimal/2;
+            answer=remainder+answer;
+        }
+        return answer;
     }
 
     public double calc(double x, String input, char opt) {
@@ -489,12 +541,18 @@ public class Calculator {
                 btnRoot.setVisible(false);
                 btnPower.setVisible(false);
                 btnLog.setVisible(false);
+                btnDecimal.setVisible(false);
+                btnBinary.setVisible(false);
+                btntan.setVisible(false);
                 break;
             case "Scientific":
-                window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
+                window.setSize(WINDOW_WIDTH + 160, WINDOW_HEIGHT);
                 btnRoot.setVisible(true);
                 btnPower.setVisible(true);
                 btnLog.setVisible(true);
+                btnDecimal.setVisible(true);
+                btnBinary.setVisible(true);
+                btntan.setVisible(true);
                 break;
         }
     };
@@ -554,6 +612,9 @@ public class Calculator {
                 btnLog.setBackground(Color.PINK);
                 btnPower.setBackground(Color.PINK);
                 btnEqual.setBackground(Color.BLUE);
+                btnBinary.setBackground(Color.PINK);
+                btnDecimal.setBackground(Color.PINK);
+                btntan.setBackground(Color.PINK);
                 btn0.setBackground(Color.WHITE);
                 btn1.setBackground(Color.WHITE);
                 btn2.setBackground(Color.WHITE);
@@ -566,6 +627,7 @@ public class Calculator {
                 btn9.setBackground(Color.WHITE);
                 btnPoint.setBackground(Color.WHITE);
 
+
                 btnC.setForeground(Color.WHITE);
                 btnBack.setForeground(Color.WHITE);
                 btnMod.setForeground(Color.WHITE);
@@ -577,6 +639,9 @@ public class Calculator {
                 btnLog.setForeground(Color.WHITE);
                 btnPower.setForeground(Color.WHITE);
                 btnRoot.setForeground(Color.WHITE);
+                btnDecimal.setForeground(Color.WHITE);
+                btnBinary.setForeground(Color.WHITE);
+                btntan.setForeground(Color.WHITE);
                 break;
             case "DarkTheme":
                 final Color primaryDarkColor = new Color(141, 38, 99);
@@ -606,6 +671,9 @@ public class Calculator {
                 btnLog.setForeground(secondaryDarkColor);
                 btnPower.setForeground(secondaryDarkColor);
                 btnRoot.setForeground(secondaryDarkColor);
+                btnDecimal.setForeground(secondaryDarkColor);
+                btnBinary.setForeground(secondaryDarkColor);
+                btntan.setForeground(secondaryDarkColor);
                 btnC.setBackground(primaryDarkColor);
                 btnBack.setBackground(primaryDarkColor);
                 btnMod.setBackground(primaryDarkColor);
@@ -617,6 +685,9 @@ public class Calculator {
                 btnLog.setBackground(primaryDarkColor);
                 btnPower.setBackground(primaryDarkColor);
                 btnEqual.setBackground(primaryDarkColor);
+                btnDecimal.setBackground(primaryDarkColor);
+                btnBinary.setBackground(primaryDarkColor);
+                btntan.setBackground(primaryDarkColor);
         }
     };
 
