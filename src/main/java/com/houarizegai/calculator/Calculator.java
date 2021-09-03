@@ -24,7 +24,7 @@ public class Calculator {
     private JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
-            btnPoint, btnEqual, btnRoot, btnPower, btnLog;
+            btnPoint, btnEqual, btnRoot, btnPower, btnLog, btnSin, btnCos;
 
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
@@ -424,6 +424,34 @@ public class Calculator {
         });
         btnLog.setVisible(false);
 
+        btnSin = initBtn("Sin", x[4], y[4], event -> {
+            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                if (go) {
+                    val = Math.sin(Double.parseDouble(inText.getText()));
+                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                        inText.setText(String.valueOf((int) val));
+                    } else {
+                        inText.setText(String.valueOf(val));
+                    }
+                    opt = 'S';
+                    addWrite = false;
+                }
+        });
+
+        btnCos = initBtn("Cos", x[4], y[5], event -> {
+            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+                if (go) {
+                    val = Math.cos(Double.parseDouble(inText.getText()));
+                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                        inText.setText(String.valueOf((int) val));
+                    } else {
+                        inText.setText(String.valueOf(val));
+                    }
+                    opt = 'C';
+                    addWrite = false;
+                }
+        });
+
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close button clicked? = End The process
@@ -469,6 +497,10 @@ public class Calculator {
                 return x % y;
             case '^':
                 return Math.pow(x, y);
+            case 'S':
+                return Math.sin(x);
+            case 'C':
+                return Math.cos(x);
             default:
                 inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
                 return y;
