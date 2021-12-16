@@ -113,9 +113,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "%");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "%");
                     }
                     opt = '%';
                     go = false;
@@ -129,9 +129,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "/");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "/");
                     }
                     opt = '/';
                     go = false;
@@ -192,9 +192,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "*");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "*");
                     }
                     opt = '*';
                     go = false;
@@ -255,9 +255,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "-");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "-");
                     }
 
                     opt = '-';
@@ -319,9 +319,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "+");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "+");
                     }
                     opt = '+';
                     go = false;
@@ -329,6 +329,7 @@ public class Calculator {
                 } else {
                     opt = '+';
                 }
+
         });
 
         btnPoint = initBtn(".", x[0], y[5], event -> {
@@ -379,9 +380,9 @@ public class Calculator {
                 if (go) {
                     val = Math.sqrt(Double.parseDouble(inText.getText()));
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "√");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "√");
                     }
                     opt = '√';
                     addWrite = false;
@@ -395,9 +396,9 @@ public class Calculator {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "^");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "^");
                     }
                     opt = '^';
                     go = false;
@@ -414,9 +415,9 @@ public class Calculator {
                 if (go) {
                     val = Math.log(Double.parseDouble(inText.getText()));
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
-                        inText.setText(String.valueOf((int) val));
+                        inText.setText(String.valueOf((int) val) + "ln");
                     } else {
-                        inText.setText(String.valueOf(val));
+                        inText.setText(String.valueOf(val) + "ln");
                     }
                     opt = 'l';
                     addWrite = false;
