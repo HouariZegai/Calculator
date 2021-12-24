@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.*;
 import java.lang.Math;
 
+#Testing
 public class Calculator {
 
     private static final int WINDOW_WIDTH = 410;
