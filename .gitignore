@@ -2,7 +2,7 @@
 .idea/
 out/
 *.iml
-.*.txt
+*.txt
 # Maven
 target/
 testignoregit/
