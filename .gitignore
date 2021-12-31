@@ -6,3 +6,4 @@ out/
 # Maven
 target/
 testignoregit/
+*.zip
