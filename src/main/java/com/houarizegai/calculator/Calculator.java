@@ -15,6 +15,7 @@ public class Calculator {
 	//To check changes on git
 	//To check pull the code from Git
 	//few more steps done to push check
+	//to check pull again to make sure reflecting or not
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
     private static final int BUTTON_WIDTH = 80;
