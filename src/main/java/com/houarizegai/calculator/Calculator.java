@@ -9,9 +9,10 @@ import java.util.regex.Pattern;
 import java.awt.Color;
 import javax.swing.*;
 import java.lang.Math;
+import java.util.logging.*;
 
 public class Calculator {
-
+    
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
     private static final int BUTTON_WIDTH = 80;
@@ -20,16 +21,19 @@ public class Calculator {
     private static final int MARGIN_Y = 60;
 
     private JFrame window; // Main window
-    private JComboBox<String> comboCalcType, comboTheme;
+    private JComboBox<String> comboCalcType, comboTheme; 
     private JTextField inText; // Input
     private JButton btnC, btnBack, btnMod, btnDiv, btnMul, btnSub, btnAdd,
             btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
-            btnPoint, btnEqual, btnRoot, btnPower, btnLog;
+            btnPoint, btnEqual, btnRoot, btnPower, btnLog, btnFact;
 
     private char opt = ' '; // Save the operator
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addWrite = true; // Connect numbers in display
     private double val = 0; // Save the value typed for calculation
+
+    private final static Logger LOGGER = 
+                Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /*
         Mx Calculator: 
@@ -67,6 +71,22 @@ public class Calculator {
     
     */
 
+    public long factorialUsingForLoop(double d) {
+        long fact = 1;
+        for (double i = d; i >= 1; i--) {
+            fact = (long) (fact * i);
+        }
+        return fact;
+    }
+
+    public boolean isNumber(String numString){
+        if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", numString)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public Calculator() {
         window = new JFrame("Calculator");
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -93,6 +113,7 @@ public class Calculator {
             val = 0;
         });
 
+        //This back button takes you one step back on the numbers you provided 
         btnBack = initBtn("<-", x[1], y[1], event -> {
             repaintFont();
             String str = inText.getText();
@@ -107,9 +128,10 @@ public class Calculator {
             }
         });
 
+        //This button performs modulus operation (e.g: 5%3 = 2) 
         btnMod = initBtn("%", x[2], y[1], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText())) {
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -117,15 +139,18 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
+                    LOGGER.log(Level.INFO, "Modulus performed");
                     opt = '%';
                     go = false;
                     addWrite = false;
                 }
+            }
         });
 
+        //This button performs Divison operation (e.g: 4/2 = 2)
         btnDiv = initBtn("/", x[3], y[1], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -133,6 +158,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
+                    LOGGER.log(Level.INFO, "Divison performed");
                     opt = '/';
                     go = false;
                     addWrite = false;
@@ -186,9 +212,10 @@ public class Calculator {
             go = true;
         });
 
+        //This button performs Multiplication operation (e.g: 4*2 = 8)
         btnMul = initBtn("*", x[3], y[2], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -196,6 +223,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
+                    LOGGER.log(Level.INFO, "Multiplication performed");
                     opt = '*';
                     go = false;
                     addWrite = false;
@@ -249,9 +277,10 @@ public class Calculator {
             go = true;
         });
 
+        //This button performs Substraction operation (e.g: 4*2 = 8)
         btnSub = initBtn("-", x[3], y[3], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -259,7 +288,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
-
+                    LOGGER.log(Level.INFO, "Substraction performed");
                     opt = '-';
                     go = false;
                     addWrite = false;
@@ -313,9 +342,10 @@ public class Calculator {
             go = true;
         });
 
+        //This button performs Addition operation (e.g: 4+2 = 6)
         btnAdd = initBtn("+", x[3], y[4], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -323,6 +353,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
+                    LOGGER.log(Level.INFO, "Addition performed");
                     opt = '+';
                     go = false;
                     addWrite = false;
@@ -360,7 +391,7 @@ public class Calculator {
         });
 
         btnEqual = initBtn("=", x[2], y[5], event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -374,8 +405,9 @@ public class Calculator {
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
+        //This button performs Squart Root operation (e.g: √4 = 2)
         btnRoot = initBtn("√", x[4], y[1], event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = Math.sqrt(Double.parseDouble(inText.getText()));
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -383,15 +415,17 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
+                    LOGGER.log(Level.INFO, "Square Root performed");
                     opt = '√';
                     addWrite = false;
                 }
         });
         btnRoot.setVisible(false);
 
+        //This button performs Power of operation (e.g: 4^2 = 16)
         btnPower = initBtn("pow", x[4], y[2], event -> {
             repaintFont();
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = calc(val, inText.getText(), opt);
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -399,6 +433,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
+                    LOGGER.log(Level.INFO, "Power of performed");
                     opt = '^';
                     go = false;
                     addWrite = false;
@@ -409,8 +444,9 @@ public class Calculator {
         btnPower.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
         btnPower.setVisible(false);
 
+        //This button performs log operation (e.g: log(4) = 1.3862943611198906)
         btnLog = initBtn("ln", x[4], y[3], event -> {
-            if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
+            if (isNumber(inText.getText()))
                 if (go) {
                     val = Math.log(Double.parseDouble(inText.getText()));
                     if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
@@ -418,11 +454,30 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
+                    LOGGER.log(Level.INFO, "Log performed");
                     opt = 'l';
                     addWrite = false;
                 }
         });
         btnLog.setVisible(false);
+
+        //This button performs factorial operation (e.g: 4! = 24)
+        btnFact = initBtn("x!", x[4], y[4], event -> {
+            if (isNumber(inText.getText()))
+                if (go) {
+                    val = factorialUsingForLoop(Double.parseDouble(inText.getText()));
+                    // val = Math.log(Double.parseDouble(inText.getText()));
+                    if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(val))) {
+                        inText.setText(String.valueOf((int) val));
+                    } else {
+                        inText.setText(String.valueOf(val));
+                    }
+                    LOGGER.log(Level.INFO, "Factorial performed");
+                    opt = '!';
+                    addWrite = false;
+                }
+        });
+        btnFact.setVisible(false);
 
         window.setLayout(null);
         window.setResizable(false);
@@ -469,6 +524,12 @@ public class Calculator {
                 return x % y;
             case '^':
                 return Math.pow(x, y);
+            case '√':
+                return Math.sqrt(x);
+            case 'l':
+                return Math.log(x);
+            case '!':
+                return factorialUsingForLoop(x);
             default:
                 inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
                 return y;
@@ -489,12 +550,14 @@ public class Calculator {
                 btnRoot.setVisible(false);
                 btnPower.setVisible(false);
                 btnLog.setVisible(false);
+                btnFact.setVisible(false);
                 break;
             case "Scientific":
                 window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                 btnRoot.setVisible(true);
                 btnPower.setVisible(true);
                 btnLog.setVisible(true);
+                btnFact.setVisible(true);
                 break;
         }
     };
@@ -515,6 +578,7 @@ public class Calculator {
                 btnAdd.setBackground(null);
                 btnRoot.setBackground(null);
                 btnLog.setBackground(null);
+                btnFact.setBackground(null);
                 btnPower.setBackground(null);
                 btnEqual.setBackground(null);
                 btn0.setBackground(null);
@@ -538,6 +602,7 @@ public class Calculator {
                 btnAdd.setForeground(Color.BLACK);
                 btnEqual.setForeground(Color.BLACK);
                 btnLog.setForeground(Color.BLACK);
+                btnFact.setForeground(Color.BLACK);
                 btnPower.setForeground(Color.BLACK);
                 btnRoot.setForeground(Color.BLACK);
                 break;
@@ -552,6 +617,7 @@ public class Calculator {
                 btnAdd.setBackground(Color.PINK);
                 btnRoot.setBackground(Color.PINK);
                 btnLog.setBackground(Color.PINK);
+                btnFact.setBackground(Color.PINK);
                 btnPower.setBackground(Color.PINK);
                 btnEqual.setBackground(Color.BLUE);
                 btn0.setBackground(Color.WHITE);
@@ -575,6 +641,7 @@ public class Calculator {
                 btnAdd.setForeground(Color.WHITE);
                 btnEqual.setForeground(Color.WHITE);
                 btnLog.setForeground(Color.WHITE);
+                btnFact.setForeground(Color.WHITE);
                 btnPower.setForeground(Color.WHITE);
                 btnRoot.setForeground(Color.WHITE);
                 break;
@@ -604,6 +671,7 @@ public class Calculator {
                 btnAdd.setForeground(secondaryDarkColor);
                 btnEqual.setForeground(secondaryDarkColor);
                 btnLog.setForeground(secondaryDarkColor);
+                btnFact.setForeground(secondaryDarkColor);
                 btnPower.setForeground(secondaryDarkColor);
                 btnRoot.setForeground(secondaryDarkColor);
                 btnC.setBackground(primaryDarkColor);
@@ -615,6 +683,7 @@ public class Calculator {
                 btnAdd.setBackground(primaryDarkColor);
                 btnRoot.setBackground(primaryDarkColor);
                 btnLog.setBackground(primaryDarkColor);
+                btnFact.setBackground(primaryDarkColor);
                 btnPower.setBackground(primaryDarkColor);
                 btnEqual.setBackground(primaryDarkColor);
         }
