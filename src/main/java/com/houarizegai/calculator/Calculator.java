@@ -374,7 +374,7 @@ public class Calculator {
         });
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
-        btnRoot = initBtn("√", x[4], y[1], event -> {
+        btnRoot = initBtn("\u221A", x[4], y[1], event -> {
             if (Pattern.matches("([-]?\\d+[.]\\d*)|(\\d+)", inText.getText()))
                 if (go) {
                     val = Math.sqrt(Double.parseDouble(inText.getText()));
@@ -383,7 +383,7 @@ public class Calculator {
                     } else {
                         inText.setText(String.valueOf(val));
                     }
-                    opt = '√';
+                    opt = '\u221A';
                     addWrite = false;
                 }
         });
