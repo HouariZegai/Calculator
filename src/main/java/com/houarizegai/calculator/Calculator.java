@@ -456,22 +456,14 @@ public class Calculator {
     public double calc(double x, String input, char opt) {
         inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
         double y = Double.parseDouble(input);
-        switch (opt) {
-            case '+':
-                return x + y;
-            case '-':
-                return x - y;
-            case '*':
-                return x * y;
-            case '/':
-                return x / y;
-            case '%':
-                return x % y;
-            case '^':
-                return Math.pow(x, y);
-            default:
-                inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
-                return y;
+        switch(opt){
+                case "+" -> return x+y;
+                case "-" -> return x-y;
+                case "*" -> return x*y;
+                case "/" -> return x/y;
+                case "%" -> return x%y;
+                case "^" -> return Math.pow(x,y);
+                default -> inText.setFont(inText.getFont().deriveFont(Font.PLAIN)); return y;
         }
     }
 
