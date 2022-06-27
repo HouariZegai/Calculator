@@ -23,6 +23,7 @@ class CalculatorTest {
 
         try {
             Assertions.assertEquals(8, calculator.calc(first, second, '+'));
+            Assertions.assertEquals(4, calculator.calc(2, "2", '+'));
             Assertions.assertEquals(-2, calculator.calc(first, second, '-'));
             Assertions.assertEquals(15, calculator.calc(first, second, '*'));
             Assertions.assertEquals(0.6, calculator.calc(first, second, '/'));
