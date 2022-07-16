@@ -18,6 +18,7 @@ public class Calculator {
     private static final int BUTTON_HEIGHT = 70;
     private static final int MARGIN_X = 20;
     private static final int MARGIN_Y = 60;
+    private static final double MATH_ERROR = 0.000001;
 
     private JFrame window; // Main window
     private JComboBox<String> comboCalcType, comboTheme;
@@ -491,6 +492,7 @@ public class Calculator {
         return btn;
     }
 
+
     public double calc(double x, String input, char opt) {
         inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
         double y = Double.parseDouble(input);
@@ -508,7 +510,12 @@ public class Calculator {
             case '^':
                 return Math.pow(x, y);
             case '√':
-                return Math.pow(x,1/y);
+                 {
+                    double a = Math.pow(x, (double) 1 / y);
+                    double b = Math.round(a);
+                   return (  Math.abs(a - b) < MATH_ERROR)?b:a;
+                 }
+
             default:
                 inText.setFont(inText.getFont().deriveFont(Font.PLAIN));
                 return y;

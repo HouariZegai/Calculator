@@ -28,6 +28,7 @@ class CalculatorTest {
             Assertions.assertEquals(0.6, calculator.calc(first, second, '/'));
             Assertions.assertEquals(3d, calculator.calc(first, second, '%'));
             Assertions.assertEquals(243, calculator.calc(first, second, '^'));
+            Assertions.assertEquals(5,calculator.calc(125,"3",'√'));
         } catch (Exception e) {
             e.printStackTrace();
         }
