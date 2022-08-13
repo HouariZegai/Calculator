@@ -1,8 +1,8 @@
 version: 0.2
 
-
-install:
- commands:
+phases:
+ install:
+  commands:
     - echo "starting codeql installation"
     - wget https://HOSTNAME/github/codeql-action/releases/latest/download/codeql-bundle-linux64.tar.gz
     - tar -xvzf ./codeql-bundle-linux64.tar.gz
