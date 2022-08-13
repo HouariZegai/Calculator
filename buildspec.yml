@@ -4,7 +4,7 @@ phases:
  install:
   commands:
     - echo "starting codeql installation"
-    - wget https://HOSTNAME/github/codeql-action/releases/latest/download/codeql-bundle-linux64.tar.gz
+    - wget https://github.com/github/codeql-action/releases/latest/download/codeql-bundle-linux64.tar.gz
     - tar -xvzf ./codeql-bundle-linux64.tar.gz
     - export PATH=$PATH:/CODEBUILD_SRC_DIR/codeql
     - yum install maven -y
