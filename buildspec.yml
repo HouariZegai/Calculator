@@ -6,8 +6,7 @@ phases:
     - echo "starting codeql installation"
     - wget https://github.com/github/codeql-action/releases/latest/download/codeql-bundle-linux64.tar.gz
     - tar -xvzf ./codeql-bundle-linux64.tar.gz
-    - export PATH=$PATH:/CODEBUILD_SRC_DIR/codeql
-    - yum install maven -y
+    - export PATH=$PATH:/$CODEBUILD_SRC_DIR/codeql
     - echo "creating data base"
     - codeql database create --language=java $CODEBUILD_SRC_DIR/java-database --overwrite --command='mvn clean install'
     
