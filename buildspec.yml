@@ -7,6 +7,8 @@ phases:
     - wget https://github.com/github/codeql-action/releases/latest/download/codeql-bundle-linux64.tar.gz
     - tar -xvzf ./codeql-bundle-linux64.tar.gz
     - export PATH=$PATH:/$CODEBUILD_SRC_DIR/codeql
+    - mvn --version
+    - java --version
     - echo "creating data base"
     - codeql database create --language=java $CODEBUILD_SRC_DIR/java-database --overwrite --command='mvn clean install'
     
