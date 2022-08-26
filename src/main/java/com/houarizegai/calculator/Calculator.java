@@ -622,5 +622,8 @@ public class Calculator {
 
     public static void main(String[] args) {
         new Calculator();
+        System.out.print("Hello World");
+        System.out.print("US 12 resovled");
+
     }
 }
