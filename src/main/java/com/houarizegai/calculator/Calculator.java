@@ -1,5 +1,8 @@
 package com.houarizegai.calculator;
 
+//import statements
+
+
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -11,6 +14,10 @@ import javax.swing.*;
 import java.lang.Math;
 
 public class Calculator {
+
+    public static void main(String[] args) {
+        new Calculator();
+    }
 
     private static final int WINDOW_WIDTH = 410;
     private static final int WINDOW_HEIGHT = 600;
@@ -620,7 +627,5 @@ public class Calculator {
         }
     };
 
-    public static void main(String[] args) {
-        new Calculator();
-    }
+
 }
