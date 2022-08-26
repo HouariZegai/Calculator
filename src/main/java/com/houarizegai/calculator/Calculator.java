@@ -623,7 +623,7 @@ public class Calculator {
     public static void main(String[] args) {
         new Calculator();
         System.out.print("Hello World");
-        System.out.print("connecting US with fixing");
+        System.out.print("US 12");
 
     }
 }
