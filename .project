@@ -28,6 +28,7 @@
 			<matcher>
 				<id>org.eclipse.core.resources.regexFilterMatcher</id>
 				<arguments>node_modules|.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+				<id> for test</id>
 			</matcher>
 		</filter>
 	</filteredResources>
