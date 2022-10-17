@@ -1,4 +1,8 @@
-on: pull_request
+name: CheckStyle Test workflow
+
+on: 
+  push:
+    branches: master
 
 jobs:
   checkstyle_job:
@@ -11,5 +15,3 @@ jobs:
       uses: nikitasavinov/checkstyle-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        reporter: 'github-pr-check'
-        tool_name: 'testtool'
