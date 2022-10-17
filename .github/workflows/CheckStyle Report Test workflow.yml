@@ -1,0 +1,36 @@
+name: CheckStyle Report Test workflow
+
+on:
+  push:
+    branches: tmp_ksh
+  pull_request:
+    branches: tmp_ksh
+
+
+jobs:
+  build:
+    runs-on: [self-hosted, Windows]
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name : Build Maven
+        run : |
+          [System.Environment]::SetEnvironmentVariable("JAVA_HOME", "C:\Program Files\Zulu\zulu-11")
+          [System.Environment]::SetEnvironmentVariable("Path", [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::Machine) + ";$($env:JAVA_HOME)\bin")
+          [System.Environment]::SetEnvironmentVariable("MAVEN_HOME", "D:\project_incubator\maven\apache-maven-3.6.3")
+          [System.Environment]::SetEnvironmentVariable("Path", [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::Machine) + ";$($env:MAVEN_HOME)\bin")
+          #mvn -B verify checkstyle:checkstyle
+          mvn clean checkstyle:checkstyle
+        
+      - uses: MES/jwgmeligmeyling_checkstyle-github-action@master
+        with:
+          path: '**/checkstyle-result.xml'
+          
+      - uses : MES/JasonEtco_create-an-issue@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUSH_PAT }}
+      - name: Upload checkstyle result
+        uses: actions/upload-artifact@v1
+        with:
+          name: Upload checkstyle result
+          path: target/checkstyle-result.xml
