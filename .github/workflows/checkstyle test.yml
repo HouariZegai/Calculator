@@ -12,6 +12,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Run check style
-      uses: nikitasavinov/checkstyle-action@master
+      uses: nikitasavinov/checkstyle-action@0.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
