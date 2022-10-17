@@ -2,9 +2,7 @@ name: CheckStyle Test workflow
 
 on: 
   push:
-    branches: master
   pull_request:
-    branches: master
 
 jobs:
   checkstyle_job:
