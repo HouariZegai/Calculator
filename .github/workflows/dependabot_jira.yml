@@ -1,11 +1,6 @@
 name: Dependabot Jira
 
-on:
-  pull_request:
-    types:
-      - opened
-    branches:
-      - master
+on: workflow_dispatch
 
 env:
   JIRA_BASE_URL: https://keerthanatest.atlassian.net/jira/software/c/projects/TES/boards/1
