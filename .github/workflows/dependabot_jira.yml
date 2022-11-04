@@ -6,7 +6,7 @@ env:
   JIRA_BASE_URL: https://keerthanatest.atlassian.net/jira/software/c/projects/TES/boards/1
   JIRA_USER_EMAIL: keerthanagvsl64@gmail.com
   JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-  JIRA_PROJECT: TES
+  JIRA_PROJECT: testproject
   JIRA_ISSUE_TYPE: TASK
 
 jobs:
