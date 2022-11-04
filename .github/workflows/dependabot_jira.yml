@@ -1,0 +1,39 @@
+name: Dependabot Jira
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - master
+
+env:
+  JIRA_BASE_URL: https://keerthanatest.atlassian.net/jira/software/c/projects/TES/boards/1
+  JIRA_USER_EMAIL: keerthanagvsl64@gmail.com
+  JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+  JIRA_PROJECT: TES
+  JIRA_ISSUE_TYPE: TASK
+
+jobs:
+  create_jira:
+    name: Dependabot Jira
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.id == 49699333 #id dependabot user
+    steps:
+    - name: Login to Jira
+      uses: atlassian/gajira-login@v2.0.0
+      env:
+        JIRA_BASE_URL: ${{ env.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ env.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+    - name: Create Jira Issue
+      id: create
+      uses: atlassian/gajira-create@v2.0.1
+      with:
+        project: ${{ env.JIRA_PROJECT }}
+        issuetype: ${{ env.JIRA_ISSUE_TYPE }}
+        summary: |
+          [${{github.event.repository.name }}] ${{github.event.pull_request.title }}
+        description: |
+          ${{github.event.pull_request.html_url }}
