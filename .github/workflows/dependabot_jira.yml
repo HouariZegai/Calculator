@@ -3,23 +3,24 @@ name: Dependabot Jira
 on: workflow_dispatch
 
 env:
-  JIRA_BASE_URL: https://keerthanatest.atlassian.net
-  JIRA_USER_EMAIL: keerthanagvsl64@gmail.com
-  JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+  GH_SECURITY_TOKEN: ${{ secrets.GITHUBPT }}
+  JIRA_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+  JIRA_HOST:  https://keerthanatest.atlassian.net
+  JIRA_USER: keerthanagvsl64@gmail.com
   JIRA_PROJECT: testproject
-  JIRA_ISSUE_TYPE: TASK
+  JIRA_ISSUE_TYPE: issue
 
 jobs:
   create_jira:
     name: Dependabot Jira
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.id == 101049858 #id dependabot user
+    
     steps:
     - name: Login to Jira
       uses: atlassian/gajira-login@v2.0.0
       env:
-        JIRA_BASE_URL: ${{ env.JIRA_BASE_URL }}
-        JIRA_USER_EMAIL: ${{ env.JIRA_USER_EMAIL }}
+        JIRA_BASE_URL: ${{ env.JIRA_HOST }}
+        JIRA_USER_EMAIL: ${{ env.JIRA_USER }}
         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
     - name: Create Jira Issue
