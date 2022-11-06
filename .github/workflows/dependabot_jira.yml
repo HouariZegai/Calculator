@@ -13,6 +13,7 @@ env:
   JIRA_HOST:  https://keerthanatest.atlassian.net
   JIRA_USER: keerthanagvsl64@gmail.com
   JIRA_PROJECT: TES
+  JIRA_EPIC: testing dependabot epic integartion for isssues
   JIRA_ISSUE_TYPE: Story
 
 jobs:
@@ -38,3 +39,5 @@ jobs:
           [${{github.event.repository.name }}] ${{github.event.pull_request.title }}
         description: |
           ${{github.event.pull_request.html_url }}
+        Linkedissues: |
+         relatesto: 'TES-6'
