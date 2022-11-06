@@ -1,6 +1,11 @@
 name: Dependabot Jira
 
-on: workflow_dispatch
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - 'master'
 
 env:
   GH_SECURITY_TOKEN: ${{ secrets.GITHUBPT }}
@@ -14,7 +19,7 @@ jobs:
   create_jira:
     name: Dependabot Jira
     runs-on: ubuntu-latest
-    
+    if: github.event.pull_request.user.id == 27856297   
     steps:
     - name: Login to Jira
       uses: atlassian/gajira-login@v2.0.0
