@@ -19,7 +19,7 @@ jobs:
   create_jira:
     name: Dependabot Jira
     runs-on: ubuntu-latest
-    if: github.event.pull_request.user.login == "keerthana2022"  
+    if: github.event.pull_request.user.login == keerthana2022 
     steps:
     - name: Login to Jira
       uses: atlassian/gajira-login@v2.0.0
