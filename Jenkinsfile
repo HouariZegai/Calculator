@@ -4,8 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                   sh 'mvn -B -DskipTests clean package'
+                
+                    sh 'mvn build'
                     echo "Maven Build is compleed"
+                
             }
         }
         stage('Test') {
@@ -17,7 +19,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                bat './jenkins/scripts/deliver'
+                sh './jenkins/scripts/deliver.sh'
                 echo "Deliver stage compleed."
             }
         }
