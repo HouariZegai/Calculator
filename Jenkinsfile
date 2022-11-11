@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 
-                    sh 'clean insall'
+                    sh 'mvn -B -DskipTests clean package'
                     echo "Maven Build is compleed"
                 
             }
