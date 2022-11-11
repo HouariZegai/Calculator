@@ -2,10 +2,11 @@ pipeline {
     agent any
     
     stages {
-        stage('com'){
-            def mvnHome = tool name: 'Apache Maven 3.6.0', type: 'maven'
-            sh "${mvnHome}/bin/mvn -B -DskipTests clean package"
-  }
+        stage('Build') {
+            steps {
+                def mvnHome = tool name: 'Apache Maven 3.6.0', type: 'maven'
+                sh "${mvnHome}/bin/mvn -B -DskipTests clean package"
+            }
         }
         stage('Test') {
             steps {
@@ -20,4 +21,5 @@ pipeline {
                 echo "Deliver stage compleed."
             }
         }
-}    
+    }
+}
