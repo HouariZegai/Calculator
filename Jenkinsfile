@@ -2,13 +2,10 @@ pipeline {
     agent any
     
     stages {
-        stage('Build') {
-            steps {
-                
-                    sh 'clean insall'
-                    echo "Maven Build is compleed"
-                
-            }
+        stage('com'){
+    def mvnHome = tool name: 'Apache Maven 3.6.0', type: 'maven'
+    sh "${mvnHome}/bin/mvn -B -DskipTests clean package"
+  }
         }
         stage('Test') {
             steps {
