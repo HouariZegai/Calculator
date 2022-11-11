@@ -21,13 +21,13 @@ pipeline {
         }
 
 
-//         stage ('Deployment Stage') {
-//             steps {
+        //   stage ('Deployment Stage') {
+        //      steps {
                
-//                     sh 'mvn deploy'
-//                     echo 'mvn deploy completed'
+        //              sh 'mvn deploy'
+        //              echo 'mvn deploy completed'
                 
-//             }
-//         }
-//     }
-// }
+        //      }
+        //  }
+     }
+ }
