@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 
-                    sh 'mvn build'
+                    sh 'mvn clean insall'
                     echo "Maven Build is compleed"
                 
             }
