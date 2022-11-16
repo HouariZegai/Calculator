@@ -33,4 +33,18 @@ class CalculatorTest {
         }
 
     }
+    
+    @Test
+    void testCalc_mayShowInfinity() {
+    	double first = 9;
+        String second = "0";
+    	
+        try {
+        	String result = calculator.calc(first, second, '/') + "";
+        	
+        	Assertions.assertEquals("Infinity", result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
 }
