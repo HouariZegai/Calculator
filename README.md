@@ -29,3 +29,4 @@ If you find any issue just put it in the repository issue section, thank you.
 
 #Basic calculator project details
 #Calculator project
+#Project details
