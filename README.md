@@ -32,3 +32,4 @@ If you find any issue just put it in the repository issue section, thank you.
 #Project details
 #Calculator project codes
 #operators function
+#Mathematical operation will be done
