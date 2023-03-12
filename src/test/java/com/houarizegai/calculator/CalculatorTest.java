@@ -1,36 +1,23 @@
 package com.houarizegai.calculator;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CalculatorTest {
 
     private Calculator calculator;
 
     @BeforeEach
-    void setUp() { // Create object before compilation
+    void setUp() {
         calculator = new Calculator();
     }
 
-    /*
-     * testCalc() test method
-     */
-    @Test
-    void testCalc() {
-        double first = 3;
-        String second = "5";
-
-        try {
-            Assertions.assertEquals(8, calculator.calc(first, second, '+'));
-            Assertions.assertEquals(-2, calculator.calc(first, second, '-'));
-            Assertions.assertEquals(15, calculator.calc(first, second, '*'));
-            Assertions.assertEquals(0.6, calculator.calc(first, second, '/'));
-            Assertions.assertEquals(3d, calculator.calc(first, second, '%'));
-            Assertions.assertEquals(243, calculator.calc(first, second, '^'));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    @ParameterizedTest
+    @CsvSource({"3,5,+,8", "2,8,-,-6", "44.5,10,*,445", "320,5,/,64", "3,5,%,3", "5,3,^,125"})
+    void testCalc(double firstNumber, double secondNumber, char operator, double expectedResult) {
+        assertEquals(expectedResult, calculator.calc(firstNumber, String.valueOf(secondNumber), operator));
     }
 }
