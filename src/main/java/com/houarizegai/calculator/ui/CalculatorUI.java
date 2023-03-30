@@ -117,7 +117,7 @@ public class CalculatorUI {
 
     private void initInputScreen(int[] columns, int[] rows) {
         inputScreen = new JTextField("0");
-        inputScreen.setBounds(columns[0], rows[0], 350, 70);
+        inputScreen.setBounds(columns[0], rows[0], 700, 70);
         inputScreen.setEditable(false);
         inputScreen.setBackground(Color.WHITE);
         inputScreen.setFont(new Font(FONT_NAME, Font.PLAIN, 33));
