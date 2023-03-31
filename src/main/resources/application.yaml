@@ -4,7 +4,7 @@ themes:
     textColor: 000000
     operatorBackground: f7f9fc
     numbersBackground: ffffff
-    btnEqualTextColor: ffffff
+    btnEqualTextColor: 000000
     btnEqualBackground: 0067c0
   - name: Dark
     applicationBackground: 1c2028
