@@ -21,7 +21,7 @@ Please ⭐️ this repo and share it with others
 
        git clone https://github.com/HouariZegai/Calculator.git
 3. Imported it in Intellij IDEA or any other Java IDE.
-4. Run the application :D
+4. Run the application by opening the src folder-->main folder-->java folder-->com.houarizegai.calculator and run the app.java file:D
 
 ## Contributing 💡
 If you want to contribute to this project and make it better with new ideas, your pull request is very welcomed.

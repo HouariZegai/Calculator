@@ -534,16 +534,11 @@ public class CalculatorUI {
         comboCalculatorType.setForeground(hex2Color(theme.getTextColor()));
         comboTheme.setForeground(hex2Color(theme.getTextColor()));
         inputScreen.setForeground(hex2Color(theme.getTextColor()));
-        btn0.setForeground(hex2Color(theme.getTextColor()));
-        btn1.setForeground(hex2Color(theme.getTextColor()));
-        btn2.setForeground(hex2Color(theme.getTextColor()));
-        btn3.setForeground(hex2Color(theme.getTextColor()));
-        btn4.setForeground(hex2Color(theme.getTextColor()));
-        btn5.setForeground(hex2Color(theme.getTextColor()));
-        btn6.setForeground(hex2Color(theme.getTextColor()));
-        btn7.setForeground(hex2Color(theme.getTextColor()));
-        btn8.setForeground(hex2Color(theme.getTextColor()));
-        btn9.setForeground(hex2Color(theme.getTextColor()));
+        JButton[] buttons = {btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9};
+        Color color = hex2Color(theme.getTextColor());
+        for (JButton button : buttons) {
+            button.setForeground(color);
+        }
         btnPoint.setForeground(hex2Color(theme.getTextColor()));
         btnC.setForeground(hex2Color(theme.getTextColor()));
         btnBack.setForeground(hex2Color(theme.getTextColor()));
@@ -560,16 +555,10 @@ public class CalculatorUI {
         comboCalculatorType.setBackground(hex2Color(theme.getApplicationBackground()));
         comboTheme.setBackground(hex2Color(theme.getApplicationBackground()));
         inputScreen.setBackground(hex2Color(theme.getApplicationBackground()));
-        btn0.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn1.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn2.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn3.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn4.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn5.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn6.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn7.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn8.setBackground(hex2Color(theme.getNumbersBackground()));
-        btn9.setBackground(hex2Color(theme.getNumbersBackground()));
+        Color colors = hex2Color(theme.getNumbersBackground());
+        for (JButton button : buttons) {
+            button.setBackground(colors);
+        }
         btnPoint.setBackground(hex2Color(theme.getNumbersBackground()));
         btnC.setBackground(hex2Color(theme.getOperatorBackground()));
         btnBack.setBackground(hex2Color(theme.getOperatorBackground()));
