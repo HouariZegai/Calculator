@@ -48,6 +48,7 @@ public class CalculatorUI {
     private JButton btn9;
     private JButton btnPoint;
     private JButton btnEqual;
+    private JButton btnPI;
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
@@ -66,8 +67,8 @@ public class CalculatorUI {
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null);
 
-        int[] columns = {MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4};
-        int[] rows = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3, MARGIN_Y + 100 + 80 * 4};
+        int[] columns = {MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4,  MARGIN_X + 90 * 5};
+        int[] rows = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3, MARGIN_Y + 100 + 80 * 4, MARGIN_Y + 100 + 80 * 5};
 
         initInputScreen(columns, rows);
         initButtons(columns, rows);
@@ -83,6 +84,7 @@ public class CalculatorUI {
 
     public double calculate(double firstNumber, double secondNumber, char operator) {
         switch (operator) {
+
             case '+':
                 return firstNumber + secondNumber;
             case '-':
@@ -137,12 +139,14 @@ public class CalculatorUI {
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
+                    btnPI.setVisible(false);
                     break;
                 case "Scientific":
                     window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
+                    btnPI.setVisible(true);
                     break;
             }
         });
@@ -505,6 +509,21 @@ public class CalculatorUI {
             }
         });
         btnLog.setVisible(false);
+        btnPI = createButton("π", columns[4], rows[4]);
+        btnPI.addActionListener(event -> {
+            if (addToDisplay) {
+                if (Pattern.matches("[0]*", inputScreen.getText())) {
+                    inputScreen.setText(String.valueOf(Math.PI));
+                } else {
+                    inputScreen.setText(inputScreen.getText() + Math.PI);
+                }
+            } else {
+                inputScreen.setText(String.valueOf(Math.PI));
+                addToDisplay = true;
+            }
+            go = true;
+        });
+        btnPI.setVisible(false);
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip) {
@@ -555,6 +574,7 @@ public class CalculatorUI {
         btnRoot.setForeground(hex2Color(theme.getTextColor()));
         btnLog.setForeground(hex2Color(theme.getTextColor()));
         btnPower.setForeground(hex2Color(theme.getTextColor()));
+        btnPI.setForeground(hex2Color(theme.getTextColor()));
         btnEqual.setForeground(hex2Color(theme.getBtnEqualTextColor()));
 
         comboCalculatorType.setBackground(hex2Color(theme.getApplicationBackground()));
@@ -581,6 +601,7 @@ public class CalculatorUI {
         btnRoot.setBackground(hex2Color(theme.getOperatorBackground()));
         btnLog.setBackground(hex2Color(theme.getOperatorBackground()));
         btnPower.setBackground(hex2Color(theme.getOperatorBackground()));
+        btnPI.setBackground(hex2Color(theme.getOperatorBackground()));
         btnEqual.setBackground(hex2Color(theme.getBtnEqualBackground()));
     }
 }
