@@ -51,6 +51,9 @@ public class CalculatorUI {
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
+    private JButton btnPI;
+    private JButton btnE;
+
 
     private char selectedOperator = ' ';
     private boolean go = true; // For calculate with Opt != (=)
@@ -137,12 +140,16 @@ public class CalculatorUI {
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
+                    btnPI.setVisible(false);
+                    btnE.setVisible(false);
                     break;
                 case "Scientific":
                     window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
+                    btnPI.setVisible(true);
+                    btnE.setVisible(true);
                     break;
             }
         });
@@ -487,6 +494,36 @@ public class CalculatorUI {
         });
         btnPower.setFont(new Font("Comic Sans MS", Font.PLAIN, 24));
         btnPower.setVisible(false);
+
+        btnPI = createButton("PI", columns[4], rows[4]);
+        btnPI.addActionListener(event -> {
+            if (addToDisplay) {
+                if (Pattern.matches("[0]*", inputScreen.getText())) {
+                    inputScreen.setText(String.valueOf(Math.PI));
+                } else {
+                    inputScreen.setText(String.valueOf(Math.PI));
+                }
+            } else {
+                inputScreen.setText(String.valueOf(Math.PI));
+                addToDisplay = false;
+            }
+            go=true;
+        });
+
+        btnE = createButton("e", columns[4], rows[5]);
+        btnE.addActionListener(event -> {
+            if (addToDisplay) {
+                if (Pattern.matches("[0]*", inputScreen.getText())) {
+                    inputScreen.setText(String.valueOf(Math.E));
+                } else {
+                    inputScreen.setText(String.valueOf(Math.E));
+                }
+            } else {
+                inputScreen.setText(String.valueOf(Math.E));
+                addToDisplay = false;
+            }
+            go=true;
+        });
 
         btnLog = createButton("ln", columns[4], rows[3]);
         btnLog.addActionListener(event -> {
