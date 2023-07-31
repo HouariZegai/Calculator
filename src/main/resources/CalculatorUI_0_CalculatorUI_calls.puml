@@ -1,0 +1,187 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "com.houarizegai.calculator.ui.CalculatorUI#CalculatorUI()",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "com.houarizegai.calculator.ui.CalculatorUI",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_789360966 { 
+   	label=houarizegai
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1574806198 { 
+   	label=calculator
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   subgraph cluster_1247805477 { 
+   	label=CalculatorUI
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   CalculatorUI1678980767XXXCalculatorUI0[
+	label="+ CalculatorUI()"
+	style=filled
+	fillcolor=white
+	tooltip="CalculatorUI
+
+null"
+	penwidth=4
+	fontcolor=darkgreen
+];
+
+CalculatorUI1678980767XXXcalculate1768830112[
+	label="+ calculate()"
+	style=filled
+	fillcolor=white
+	tooltip="CalculatorUI
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_1325112700 { 
+   	label=ColorUtil
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   ColorUtil1407172275XXXhex2Color1808118735[
+	label="+ hex2Color()"
+	style=filled
+	fillcolor=white
+	tooltip="ColorUtil
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_1813764340 { 
+   	label=ThemeLoader
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   ThemeLoader673952290XXXloadThemes0[
+	label="+ loadThemes()"
+	style=filled
+	fillcolor=white
+	tooltip="ThemeLoader
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_508746582 { 
+   	label=App
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   App124619203XXXmain1859653459[
+	label="+ main()"
+	style=filled
+	fillcolor=white
+	tooltip="App
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+} 
+
+'edges    
+App124619203XXXmain1859653459 -> CalculatorUI1678980767XXXCalculatorUI0;
+CalculatorUI1678980767XXXCalculatorUI0 -> CalculatorUI1678980767XXXcalculate1768830112;
+CalculatorUI1678980767XXXCalculatorUI0 -> ColorUtil1407172275XXXhex2Color1808118735;
+CalculatorUI1678980767XXXCalculatorUI0 -> ThemeLoader673952290XXXloadThemes0;
+    
+}
+@enduml
