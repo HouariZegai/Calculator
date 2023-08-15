@@ -124,6 +124,8 @@ public class CalculatorUI {
         window.add(inputScreen);
     }
 
+    break;
+
     private void initCalculatorTypeSelector() {
         comboCalculatorType = createComboBox(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type");
         comboCalculatorType.addItemListener(event -> {
