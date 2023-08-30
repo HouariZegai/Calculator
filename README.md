@@ -1,7 +1,7 @@
 # Calculator
-A very basic calculator application created using Java **Swing**. 
+Java calculator application
 
-[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) 
 
 ## Thank You!
 Please ⭐️ this repo and share it with others
