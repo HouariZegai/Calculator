@@ -1,5 +1,5 @@
 # Calculator
-This is sample Java application to undertand it quickly
+This is sample Java application which helps us to understand quickly
 
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
