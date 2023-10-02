@@ -46,11 +46,3 @@ jobs:
         with:
           name: node-app
 
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
-          app-name: 'webappazdev'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_196680BCB37845B6921EE95F96E3D76D }}
-          package: .
