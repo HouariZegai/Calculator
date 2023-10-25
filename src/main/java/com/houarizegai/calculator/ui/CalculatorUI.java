@@ -13,7 +13,7 @@ import javax.swing.*;
 
 import static com.houarizegai.calculator.util.ColorUtil.hex2Color;
 
-public class CalculatorUI {
+public class abcd {
 
     private static final String FONT_NAME = "Comic Sans MS";
     private static final String DOUBLE_OR_NUMBER_REGEX = "([-]?\\d+[.]\\d*)|(\\d+)|(-\\d+)";
@@ -59,7 +59,7 @@ public class CalculatorUI {
 
     private final Map<String, Theme> themesMap;
 
-    public CalculatorUI() {
+    public fun1() {
         themesMap = ThemeLoader.loadThemes();
 
         window = new JFrame(APPLICATION_TITLE);
@@ -100,7 +100,7 @@ public class CalculatorUI {
         }
     }
 
-    private void initThemeSelector() {
+    private void fun2() {
         comboTheme = createComboBox(themesMap.keySet().toArray(new String[0]), 230, 30, "Theme");
         comboTheme.addItemListener(event -> {
             if (event.getStateChange() != ItemEvent.SELECTED)
