@@ -13,7 +13,7 @@ import javax.swing.*;
 
 import static com.houarizegai.calculator.util.ColorUtil.hex2Color;
 
-public class CalculatorUI {
+public class abcd {
 
     private static final String FONT_NAME = "Comic Sans MS";
     private static final String DOUBLE_OR_NUMBER_REGEX = "([-]?\\d+[.]\\d*)|(\\d+)|(-\\d+)";
@@ -59,7 +59,7 @@ public class CalculatorUI {
 
     private final Map<String, Theme> themesMap;
 
-    public CalculatorUI() {
+    public fun1() {
         themesMap = ThemeLoader.loadThemes();
 
         window = new JFrame(APPLICATION_TITLE);
@@ -100,7 +100,7 @@ public class CalculatorUI {
         }
     }
 
-    private void initThemeSelector() {
+    private void fun2() {
         comboTheme = createComboBox(themesMap.keySet().toArray(new String[0]), 230, 30, "Theme");
         comboTheme.addItemListener(event -> {
             if (event.getStateChange() != ItemEvent.SELECTED)
@@ -175,7 +175,7 @@ public class CalculatorUI {
             if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()) || !go)
                 return;
 
-            typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
+            typedValue = calculate(typedValue, Double.
             if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
                 inputScreen.setText(String.valueOf((int) typedValue));
             } else {
@@ -267,9 +267,7 @@ public class CalculatorUI {
                 go = false;
                 addToDisplay = false;
             } else {
-                selectedOperator = '*';
-            }
-        });
+
 
         btn4 = createButton("4", columns[0], rows[3]);
         btn4.addActionListener(event -> {
@@ -346,8 +344,7 @@ public class CalculatorUI {
                     inputScreen.setText(inputScreen.getText() + "1");
                 }
             } else {
-                inputScreen.setText("1");
-                addToDisplay = true;
+
             }
             go = true;
         });
@@ -367,7 +364,7 @@ public class CalculatorUI {
             go = true;
         });
 
-        btn3 = createButton("3", columns[2], rows[4]);
+        btn3 =
         btn3.addActionListener(event -> {
             if (addToDisplay) {
                 if (Pattern.matches("[0]*", inputScreen.getText())) {
