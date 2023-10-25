@@ -175,7 +175,7 @@ public class abcd {
             if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()) || !go)
                 return;
 
-            typedValue = calculate(typedValue, Double.parseDouble(inputScreen.getText()), selectedOperator);
+            typedValue = calculate(typedValue, Double.
             if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
                 inputScreen.setText(String.valueOf((int) typedValue));
             } else {
@@ -267,9 +267,7 @@ public class abcd {
                 go = false;
                 addToDisplay = false;
             } else {
-                selectedOperator = '*';
-            }
-        });
+
 
         btn4 = createButton("4", columns[0], rows[3]);
         btn4.addActionListener(event -> {
@@ -346,8 +344,7 @@ public class abcd {
                     inputScreen.setText(inputScreen.getText() + "1");
                 }
             } else {
-                inputScreen.setText("1");
-                addToDisplay = true;
+
             }
             go = true;
         });
@@ -367,7 +364,7 @@ public class abcd {
             go = true;
         });
 
-        btn3 = createButton("3", columns[2], rows[4]);
+        btn3 =
         btn3.addActionListener(event -> {
             if (addToDisplay) {
                 if (Pattern.matches("[0]*", inputScreen.getText())) {
