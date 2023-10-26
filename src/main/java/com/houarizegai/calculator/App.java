@@ -9,5 +9,4 @@ public class App {
     public static void main(String[] args) {
         stringEqualityCheckNoncompliant("dfhdh","dfhdh");
     }
-
 }
