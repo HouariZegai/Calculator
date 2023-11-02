@@ -1,0 +1,22 @@
+version: 1.0
+
+# Sample YAML file
+# This configuration file is an optional file for Amazon CodeGuru Reviewer.
+# You must name your file aws-codeguru-reviewer.yml for CodeGuru Reviewer to recognize it.
+# Add the file to the root directory of your repository.
+# For more information, see the Amazon CodeGuru Reviewer User Guide:
+# https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html.
+
+# Exclude files and directories
+# Use glob pattern syntax to specify the files and directories that you want to exclude
+# from analysis under excludeFiles. For more information, see glob (programming):
+# https://en.wikipedia.org/wiki/Glob_(programming).
+# The following example excludes from analysis all content in the some-package directory, all content
+# in the tst directory, and all JSON files in a sub-directory under a directory prefixed with some-.
+# Replace with your own list of files and directories that you want CodeGuru Reviewer to exclude.
+# We recommend that you use a schema validator to confirm that the YAML syntax is valid.
+
+excludeFiles:
+  - 'src/some-package/**'
+  - 'tst/**'
+  - 'src/some-*/**/*.json'
