@@ -12,6 +12,7 @@ import java.awt.Color;
 import javax.swing.*;
 
 import static com.houarizegai.calculator.util.ColorUtil.hex2Color;
+import java.awt.event.ActionEvent;
 
 public class CalculatorUI {
 
@@ -51,6 +52,8 @@ public class CalculatorUI {
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
+    //My addition
+    private JButton btnPi;
 
     private char selectedOperator = ' ';
     private boolean go = true; // For calculate with Opt != (=)
@@ -137,12 +140,14 @@ public class CalculatorUI {
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
+                    btnPi.setVisible(false);
                     break;
                 case "Scientific":
                     window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
+                    btnPi.setVisible(true);
                     break;
             }
         });
@@ -449,10 +454,10 @@ public class CalculatorUI {
         btnEqual.setSize(2 * BUTTON_WIDTH + 10, BUTTON_HEIGHT);
 
         btnRoot = createButton("√", columns[4], rows[1]);
-        btnRoot.addActionListener(event -> {
+        btnRoot.addActionListener((ActionEvent event) -> {
             if (!Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText()))
                 return;
-
+            
             if (go) {
                 typedValue = Math.sqrt(Double.parseDouble(inputScreen.getText()));
                 if (Pattern.matches("[-]?[\\d]+[.][0]*", String.valueOf(typedValue))) {
@@ -460,7 +465,7 @@ public class CalculatorUI {
                 } else {
                     inputScreen.setText(String.valueOf(typedValue));
                 }
-                selectedOperator = '√';
+                selectedOperator = '\u221A';
                 addToDisplay = false;
             }
         });
@@ -505,6 +510,26 @@ public class CalculatorUI {
             }
         });
         btnLog.setVisible(false);
+        
+        // My addition
+        
+        // Creates PI button
+        btnPi = createButton("Pi", columns[4], rows[4]);
+        
+        // Logic of the PI button
+        btnPi.addActionListener(event -> {
+            
+            //Calls Math.Pi to store into pi variable
+            double pi = Math.PI;
+            // Displays the result to Calculator
+            inputScreen.setText(String.valueOf(pi));
+            addToDisplay = true;
+            go = true;
+        });
+        // Hides the button so it is only visible on the Scientific Calculator and not Standard
+        btnPi.setVisible(false);
+        
+        
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip) {
@@ -555,6 +580,7 @@ public class CalculatorUI {
         btnRoot.setForeground(hex2Color(theme.getTextColor()));
         btnLog.setForeground(hex2Color(theme.getTextColor()));
         btnPower.setForeground(hex2Color(theme.getTextColor()));
+        btnPi.setForeground(hex2Color(theme.getTextColor()));
         btnEqual.setForeground(hex2Color(theme.getBtnEqualTextColor()));
 
         comboCalculatorType.setBackground(hex2Color(theme.getApplicationBackground()));
@@ -581,6 +607,7 @@ public class CalculatorUI {
         btnRoot.setBackground(hex2Color(theme.getOperatorBackground()));
         btnLog.setBackground(hex2Color(theme.getOperatorBackground()));
         btnPower.setBackground(hex2Color(theme.getOperatorBackground()));
+        btnPi.setBackground(hex2Color(theme.getOperatorBackground()));
         btnEqual.setBackground(hex2Color(theme.getBtnEqualBackground()));
     }
 }
