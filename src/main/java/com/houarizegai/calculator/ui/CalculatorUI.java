@@ -81,6 +81,15 @@ public class CalculatorUI {
         window.setVisible(true);
     }
 
+    /**
+     * Performs a mathematical operation on two numbers based on the given operator.
+     *
+     * @param firstNumber  The first operand for the mathematical operation.
+     * @param secondNumber The second operand for the mathematical operation.
+     * @param operator     The operator specifying the type of mathematical operation to be performed.
+     *                     Valid operators are '+', '-', '*', '/', '%', '^'.
+     * @return The result of the mathematical operation.
+     */
     public double calculate(double firstNumber, double secondNumber, char operator) {
         switch (operator) {
             case '+':
