@@ -25,32 +25,32 @@ public class CalculatorUI {
     private static final int MARGIN_X = 20;
     private static final int MARGIN_Y = 60;
 
-    private final JFrame window;
-    private JComboBox<String> comboCalculatorType;
-    private JComboBox<String> comboTheme;
-    private JTextField inputScreen;
-    private JButton btnC;
-    private JButton btnBack;
-    private JButton btnMod;
-    private JButton btnDiv;
-    private JButton btnMul;
-    private JButton btnSub;
-    private JButton btnAdd;
-    private JButton btn0;
-    private JButton btn1;
-    private JButton btn2;
-    private JButton btn3;
-    private JButton btn4;
-    private JButton btn5;
-    private JButton btn6;
-    private JButton btn7;
-    private JButton btn8;
-    private JButton btn9;
-    private JButton btnPoint;
-    private JButton btnEqual;
-    private JButton btnRoot;
-    private JButton btnPower;
-    private JButton btnLog;
+    public final JFrame window;
+    public JComboBox<String> comboCalculatorType;
+    public JComboBox<String> comboTheme;
+    public JTextField inputScreen;
+    public JButton btnC;
+    public JButton btnBack;
+    public JButton btnMod;
+    public JButton btnDiv;
+    public JButton btnMul;
+    public JButton btnSub;
+    public JButton btnAdd;
+    public JButton btn0;
+    public JButton btn1;
+    public JButton btn2;
+    public JButton btn3;
+    public JButton btn4;
+    public JButton btn5;
+    public JButton btn6;
+    public JButton btn7;
+    public JButton btn8;
+    public JButton btn9;
+    public JButton btnPoint;
+    public JButton btnEqual;
+    public JButton btnRoot;
+    public JButton btnPower;
+    public JButton btnLog;
 
     private char selectedOperator = ' ';
     private boolean go = true; // For calculate with Opt != (=)
@@ -82,22 +82,15 @@ public class CalculatorUI {
     }
 
     public double calculate(double firstNumber, double secondNumber, char operator) {
-        switch (operator) {
-            case '+':
-                return firstNumber + secondNumber;
-            case '-':
-                return firstNumber - secondNumber;
-            case '*':
-                return firstNumber * secondNumber;
-            case '/':
-                return firstNumber / secondNumber;
-            case '%':
-                return firstNumber % secondNumber;
-            case '^':
-                return Math.pow(firstNumber, secondNumber);
-            default:
-                return secondNumber;
-        }
+        return switch (operator) {
+            case '+' -> firstNumber + secondNumber;
+            case '-' -> firstNumber - secondNumber;
+            case '*' -> firstNumber * secondNumber;
+            case '/' -> firstNumber / secondNumber;
+            case '%' -> firstNumber % secondNumber;
+            case '^' -> Math.pow(firstNumber, secondNumber);
+            default -> secondNumber;
+        };
     }
 
     private void initThemeSelector() {
@@ -132,18 +125,18 @@ public class CalculatorUI {
 
             String selectedItem = (String) event.getItem();
             switch (selectedItem) {
-                case "Standard":
+                case "Standard" -> {
                     window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
-                    break;
-                case "Scientific":
+                }
+                case "Scientific" -> {
                     window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
-                    break;
+                }
             }
         });
     }
