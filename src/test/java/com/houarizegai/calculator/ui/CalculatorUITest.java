@@ -236,4 +236,31 @@ class CalculatorUITest {
         checkEqual(calculator, Math.sqrt(a));
     }
 
+    @Test
+    void random() {
+        var calculator = getCalculatorUI();
+        for(int i = 0; i < 1000; i++) {
+            var action = getRand(24).intValue();
+            switch (action) {
+                case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 -> clickDigit(calculator, action);
+                case 10 -> calculator.btnPoint.doClick();
+                case 11 -> calculator.btnC.doClick();
+                case 12 -> calculator.btnBack.doClick();
+                case 13 -> calculator.btnMod.doClick();
+                case 14 -> calculator.btnDiv.doClick();
+                case 15 -> calculator.btnMul.doClick();
+                case 16 -> calculator.btnSub.doClick();
+                case 17 -> calculator.btnAdd.doClick();
+                case 18 -> calculator.btnEqual.doClick();
+                case 19 ->
+                        calculator.comboCalculatorType.setSelectedIndex(calculator.comboCalculatorType.getSelectedIndex() ^ 1);
+                case 20 -> calculator.comboTheme.setSelectedIndex(calculator.comboTheme.getSelectedIndex() ^ 1);
+                case 21 -> calculator.btnRoot.doClick();
+                case 22 -> calculator.btnPower.doClick();
+                case 23 -> calculator.btnLog.doClick();
+            }
+
+        }
+    }
+
 }
