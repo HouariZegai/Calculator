@@ -13,3 +13,10 @@ themes:
     numbersBackground: 363c47
     btnEqualTextColor: ffffff
     btnEqualBackground: 4cc2ff
+  - name: Violet
+    applicationBackground: cf9fff
+    textColor: 000000
+    operatorBackground: b148d2
+    numbersBackground: b148d2
+    btnEqualTextColor: ffffff
+    btnEqualBackground: 691883
