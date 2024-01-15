@@ -1,31 +1,56 @@
 package com.houarizegai.calculator.ui;
+import static com.houarizegai.calculator.util.ColorUtil.*;
 
-import com.houarizegai.calculator.theme.properties.Theme;
-import com.houarizegai.calculator.theme.ThemeLoader;
-
+import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.Map;
 import java.util.regex.Pattern;
-import java.awt.Color;
-import javax.swing.*;
 
-import static com.houarizegai.calculator.util.ColorUtil.hex2Color;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
+import com.houarizegai.calculator.menu.Menu;
+import com.houarizegai.calculator.menu.MenuItem;
+import com.houarizegai.calculator.menu.Menubar;
+import com.houarizegai.calculator.theme.ThemeLoader;
+//#region imports
+import com.houarizegai.calculator.theme.properties.Theme;
+//#endregion
 public class CalculatorUI {
-
+//#region Fields
     private static final String FONT_NAME = "Comic Sans MS";
     private static final String DOUBLE_OR_NUMBER_REGEX = "([-]?\\d+[.]\\d*)|(\\d+)|(-\\d+)";
     private static final String APPLICATION_TITLE = "Calculator";
-    private static final int WINDOW_WIDTH = 410;
-    private static final int WINDOW_HEIGHT = 600;
+    private static final int WINDOW_WIDTH = 390;
+    private static final int WINDOW_HEIGHT = 690;
     private static final int BUTTON_WIDTH = 80;
     private static final int BUTTON_HEIGHT = 70;
+
+
+
+
+
     private static final int MARGIN_X = 20;
     private static final int MARGIN_Y = 60;
 
     private final JFrame window;
+    
     private JComboBox<String> comboCalculatorType;
     private JComboBox<String> comboTheme;
     private JTextField inputScreen;
@@ -51,23 +76,27 @@ public class CalculatorUI {
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
+    Menubar mbar;
 
     private char selectedOperator = ' ';
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addToDisplay = true; // Connect numbers in display
     private double typedValue = 0;
+    
 
     private final Map<String, Theme> themesMap;
-
+    //#endregion
     public CalculatorUI() {
         themesMap = ThemeLoader.loadThemes();
 
         window = new JFrame(APPLICATION_TITLE);
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null);
-
-        int[] columns = {MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4};
-        int[] rows = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3, MARGIN_Y + 100 + 80 * 4};
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mbar = new Menubar();
+        int[] columns = { MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4 };
+        int[] rows = { MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3,
+                MARGIN_Y + 100 + 80 * 4 };
 
         initInputScreen(columns, rows);
         initButtons(columns, rows);
@@ -78,7 +107,10 @@ public class CalculatorUI {
         window.setLayout(null);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setUndecorated(true);
+        window.setJMenuBar(getJMenuBar());
         window.setVisible(true);
+
     }
 
     public double calculate(double firstNumber, double secondNumber, char operator) {
@@ -93,7 +125,36 @@ public class CalculatorUI {
                 return firstNumber / secondNumber;
             case '%':
                 return firstNumber % secondNumber;
-            case '^':
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+                case '^':
                 return Math.pow(firstNumber, secondNumber);
             default:
                 return secondNumber;
@@ -121,11 +182,12 @@ public class CalculatorUI {
         inputScreen.setEditable(false);
         inputScreen.setBackground(Color.WHITE);
         inputScreen.setFont(new Font(FONT_NAME, Font.PLAIN, 33));
+        inputScreen.setBorder(null);
         window.add(inputScreen);
     }
 
     private void initCalculatorTypeSelector() {
-        comboCalculatorType = createComboBox(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type");
+        comboCalculatorType = createComboBox(new String[] { "Standard", "Scientific" }, 20, 30, "Calculator type");
         comboCalculatorType.addItemListener(event -> {
             if (event.getStateChange() != ItemEvent.SELECTED)
                 return;
@@ -512,7 +574,8 @@ public class CalculatorUI {
         combo.setBounds(x, y, 140, 25);
         combo.setToolTipText(toolTip);
         combo.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        window.add(combo);
+        combo.setBorder(null);
+        //window.add(combo);
 
         return combo;
     }
@@ -523,6 +586,7 @@ public class CalculatorUI {
         btn.setFont(new Font("Comic Sans MS", Font.PLAIN, 28));
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btn.setFocusable(false);
+        btn.setBorder(null);
         window.add(btn);
 
         return btn;
@@ -530,7 +594,8 @@ public class CalculatorUI {
 
     private void applyTheme(Theme theme) {
         window.getContentPane().setBackground(hex2Color(theme.getApplicationBackground()));
-
+        
+        mbar.setBackground(hex2Color(theme.getMenuBarBackground()));   
         comboCalculatorType.setForeground(hex2Color(theme.getTextColor()));
         comboTheme.setForeground(hex2Color(theme.getTextColor()));
         inputScreen.setForeground(hex2Color(theme.getTextColor()));
@@ -583,4 +648,157 @@ public class CalculatorUI {
         btnPower.setBackground(hex2Color(theme.getOperatorBackground()));
         btnEqual.setBackground(hex2Color(theme.getBtnEqualBackground()));
     }
+
+    /**
+     * 
+     * @return A JMenuBar.
+     */
+
+    private JMenuBar getJMenuBar() {
+        // #region menubar        
+        
+        // #region set the icon for options menu.
+        Menu optionsMenu = new Menu("");
+        optionsMenu.setBorder(BorderFactory.createEmptyBorder(2, 20, 2, 2));
+        try {
+            File file = new File("src/main/resources/img1.png");
+            if (file.exists()) {
+                System.out.println("File exist");
+                ImageIcon icon = new ImageIcon(file.getPath());
+                optionsMenu.setIcon(icon);
+            }
+            file = null;
+        } catch (NullPointerException ne) {
+            System.out.println("File does not exist..");
+        }
+        // #endregion
+
+        // #region menu and menu items.
+
+        Menu typeMenuItem = new Menu("Type");
+        MenuItem standard = new MenuItem("Standard");
+        standard.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+                btnRoot.setVisible(false);
+                btnPower.setVisible(false);
+                btnLog.setVisible(false);
+            }
+        });
+        MenuItem scientific = new MenuItem("Scientific");
+        scientific.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
+                btnRoot.setVisible(true);
+                btnPower.setVisible(true);
+                btnLog.setVisible(true);
+
+            }
+        });
+        typeMenuItem.add(standard);
+        typeMenuItem.add(scientific);
+
+        Menu themeMenuItem = new Menu("Theme");
+        MenuItem light = new MenuItem("Light");
+        light.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                applyTheme(themesMap.get(light.getText()));
+
+            }
+        });
+        MenuItem dark = new MenuItem("Dark");
+        dark.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                applyTheme(themesMap.get(dark.getText()));
+            }
+        });
+        MenuItem greenRiver = new MenuItem("GreenRiver");
+        greenRiver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                applyTheme(themesMap.get(greenRiver.getText()));
+            }
+        });
+        MenuItem darkebonygrey = new MenuItem("DarkEbonyGrey");
+        darkebonygrey.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                applyTheme(themesMap.get(darkebonygrey.getText()));
+            }
+        });
+        themeMenuItem.add(light);
+        themeMenuItem.add(dark);
+        themeMenuItem.add(greenRiver);
+        themeMenuItem.add(darkebonygrey);
+
+        Menu closeBtn = new Menu("X");
+        closeBtn.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 20));
+        closeBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    System.exit(0);
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                closeBtn.setForeground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                closeBtn.setForeground(Color.BLACK);
+            }
+        });
+
+        Menu miniMizeBtn = new Menu("_");
+        miniMizeBtn.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+        miniMizeBtn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    window.setState(Frame.ICONIFIED);
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                miniMizeBtn.setForeground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                miniMizeBtn.setForeground(Color.BLACK);
+            }
+        });
+
+        MenuItem closeBtnMenuItem = new MenuItem("Exit");
+        closeBtnMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        optionsMenu.add(typeMenuItem);
+        optionsMenu.add(themeMenuItem);
+        optionsMenu.add(closeBtnMenuItem);
+        // #endregion
+
+        mbar.add(optionsMenu);
+        mbar.add(Box.createHorizontalGlue());
+        mbar.add(miniMizeBtn);
+        mbar.add(Box.createRigidArea(new Dimension(10, 0)));
+        mbar.add(closeBtn);
+        //mbar.add(Box.createHorizontalGlue());
+        //mbar.add(miniMizeBtn);
+        // #endregion
+        return mbar;
+    }
+
 }
