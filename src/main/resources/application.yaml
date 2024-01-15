@@ -1,11 +1,12 @@
 themes:
   - name: Light
-    applicationBackground: f0f3f9
+    applicationBackground: ffffff
     textColor: 000000
     operatorBackground: f7f9fc
-    numbersBackground: ffffff
-    btnEqualTextColor: ffffff
+    numbersBackground:  ffffff
+    btnEqualTextColor:  ffffff
     btnEqualBackground: 0067c0
+    menuBarBackground:  f1f2f6
   - name: Dark
     applicationBackground: 1c2028
     textColor: ffffff
@@ -13,3 +14,20 @@ themes:
     numbersBackground: 363c47
     btnEqualTextColor: ffffff
     btnEqualBackground: 4cc2ff
+    menuBarBackground:  485460
+  - name: GreenRiver
+    applicationBackground: 2980b9
+    textColor: ffffff
+    operatorBackground: 1abc9c
+    numbersBackground: 2ecc71
+    btnEqualTextColor: ffffff
+    btnEqualBackground: 3498db  
+    menuBarBackground:  00d2d3 
+  - name: DarkEbonyGrey
+    applicationBackground: 36453B
+    textColor: ffffff
+    operatorBackground: 596869
+    numbersBackground: 515751
+    btnEqualTextColor: 36453B
+    btnEqualBackground: ffffff
+    menuBarBackground:  8395a7
