@@ -1,4 +1,5 @@
 themes:
+
   - name: Light
     applicationBackground: f0f3f9
     textColor: 000000
@@ -13,3 +14,11 @@ themes:
     numbersBackground: 363c47
     btnEqualTextColor: ffffff
     btnEqualBackground: 4cc2ff
+  - name: Blue
+    applicationBackground: 000080
+    textColor: ffffff
+    operatorBackground: 2d333d
+    numbersBackground: 000000
+    btnEqualTextColor: 000000
+    btnEqualBackground: ffffff
+
