@@ -1,4 +1,4 @@
-pipeline{
+opipeline{
     agent any
 environment{
    PATH = "Mona"
@@ -11,6 +11,7 @@ environment{
         }
 stage("maven build"){
   steps{
+echo "mvn --version"
 bat ("mvn clean install")
 }
     }
