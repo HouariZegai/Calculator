@@ -11,8 +11,7 @@ environment{
         }
 stage("maven build"){
   steps{
-echo "mvn --version"
-bat ("mvn clean install")
+bat ("C:\Program Files\apache-maven-3.9.5\bin\mvn.cmd clean install")
 }
     }
 }
