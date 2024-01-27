@@ -1,10 +1,17 @@
 pipeline{
     agent any
+environment{
+   PATH = "Mona"
     stages{
         stage("git"){
             steps{
                 git credentialsId: 'fda8fec1-131d-4bd3-ba5f-3867f7089ecd', url: 'https://github.com/Mcheruku1995/Calculator.git'
             }
         }
+stage("maven build"){
+  steps{
+    sh "mvn clean package"
+}
     }
+}
 }
