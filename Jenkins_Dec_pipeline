@@ -2,6 +2,7 @@ pipeline{
     agent any
 environment{
    PATH = "Mona"
+}
     stages{
         stage("git"){
             steps{
