@@ -1,8 +1,9 @@
 pipeline{
     agent any
-//environment{
- //  PATH = "Mona"
-//}
+environment{
+   name = "Mounika Cheruku"
+   cmd = "mav clean"
+}
     stages{
         stage("git"){
             steps{
@@ -11,7 +12,8 @@ pipeline{
         }
 stage("maven build"){
   steps{
-bat "mvn clean"
+echo "I am ${name}"
+bat "${cmd}"
 }
     }
 }
