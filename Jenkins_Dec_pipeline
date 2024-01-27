@@ -11,7 +11,7 @@ environment{
         }
 stage("maven build"){
   steps{
-bat "echo "hi""
+bat "mvn clean"
 }
     }
 }
