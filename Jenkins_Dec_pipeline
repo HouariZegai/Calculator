@@ -1,4 +1,4 @@
-opipeline{
+pipeline{
     agent any
 environment{
    PATH = "Mona"
