@@ -2,7 +2,7 @@ pipeline{
     agent any
 environment{
    name = "Mounika Cheruku"
-   cmd = "mav clean"
+   cmd = "mvn clean"
 }
     stages{
         stage("git"){
