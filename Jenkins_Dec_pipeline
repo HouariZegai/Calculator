@@ -12,8 +12,7 @@ environment{
         }
 stage("maven build"){
   steps{
-echo "I am ${name}"
-bat "${cmd}"
+echo "name of the person is $name
 }
     }
 }
