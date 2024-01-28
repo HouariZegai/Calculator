@@ -1,3 +1,4 @@
+currentBuild.displayName = "CNR-#"+currentBuild.number
 pipeline{
     agent any
 environment{
