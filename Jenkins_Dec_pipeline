@@ -12,7 +12,7 @@ environment{
         }
 stage("maven build"){
   steps{
-echo "I am Mounika Cheruku is $name"
+echo "I am Mounika Cheruku"
 }
     }
 }
