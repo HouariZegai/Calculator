@@ -16,9 +16,9 @@ stage('install') {
                 bat 'mvn install'
             }
         }
-stage('Deliver') {
+stage('Deploy') {
             steps {
-                bat 'deliver'
+                bat 'deploy'
             }
         }
     }
