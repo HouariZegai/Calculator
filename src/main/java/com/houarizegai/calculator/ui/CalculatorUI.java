@@ -51,6 +51,7 @@ public class CalculatorUI {
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
+    private JButton btnPi;
 
     private char selectedOperator = ' ';
     private boolean go = true; // For calculate with Opt != (=)
@@ -137,12 +138,14 @@ public class CalculatorUI {
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
+                    btnPi.setVisible(false);
                     break;
                 case "Scientific":
                     window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
+                    btnPi.setVisible(true);
                     break;
             }
         });
@@ -505,6 +508,19 @@ public class CalculatorUI {
             }
         });
         btnLog.setVisible(false);
+
+        btnPi = createButton("π", columns[4], rows[4]);
+        btnPi.addActionListener(event -> {
+            if (addToDisplay) {
+                inputScreen.setText(String.valueOf(Math.PI));
+                addToDisplay = false;
+            } else {
+                inputScreen.setText(String.valueOf(Math.PI));
+                addToDisplay = true;
+            }
+            go = true;
+        });
+        btnPi.setVisible(false);
     }
 
     private JComboBox<String> createComboBox(String[] items, int x, int y, String toolTip) {
@@ -555,6 +571,7 @@ public class CalculatorUI {
         btnRoot.setForeground(hex2Color(theme.getTextColor()));
         btnLog.setForeground(hex2Color(theme.getTextColor()));
         btnPower.setForeground(hex2Color(theme.getTextColor()));
+        btnPi.setForeground(hex2Color(theme.getTextColor()));
         btnEqual.setForeground(hex2Color(theme.getBtnEqualTextColor()));
 
         comboCalculatorType.setBackground(hex2Color(theme.getApplicationBackground()));
@@ -581,6 +598,7 @@ public class CalculatorUI {
         btnRoot.setBackground(hex2Color(theme.getOperatorBackground()));
         btnLog.setBackground(hex2Color(theme.getOperatorBackground()));
         btnPower.setBackground(hex2Color(theme.getOperatorBackground()));
+        btnPi.setBackground(hex2Color(theme.getOperatorBackground()));
         btnEqual.setBackground(hex2Color(theme.getBtnEqualBackground()));
     }
 }
