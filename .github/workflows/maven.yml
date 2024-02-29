@@ -32,3 +32,8 @@ jobs:
 
     - name: Build Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)  
+
+    - name: Package Helm Chart
+      run: |
+        helm lint mysql
+        helm package mysql
