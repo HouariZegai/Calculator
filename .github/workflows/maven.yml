@@ -39,8 +39,8 @@ jobs:
         helm package mysql
 
     - name: Deploy Helm Chart to AWS EKS
-     uses: helm/actions@v2
-     with:
+      uses: helm/actions@v2
+      with:
        aws_access_key_id: AKIATZXCDZEGQINIYHRB
        aws_secret_access_key: 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
        aws_default_region: ap-south-1
