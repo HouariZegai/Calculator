@@ -38,11 +38,16 @@ jobs:
         helm lint mysql
         helm package mysql
 
-    - name: Deploy Helm Chart to AWS EKS
-      uses: helm/actions@v2
+    - name: Configure AWS CLI
+      uses: aws-actions/configure-aws-credentials@v2
       with:
-       aws_access_key_id: AKIATZXCDZEGQINIYHRB
-       aws_secret_access_key: 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
-       aws_default_region: ap-south-1
-       eks_cluster_name: devops
-       chart_reference: mysql  # Specify the path to your Helm chart package
+        aws-access-key-id: AKIATZXCDZEGQINIYHRB
+        aws-secret-access-key: 6YH9JsAdPHWEXZm5D7qNnBx3aT4My/FEyM+jcyaT
+        aws-region: ap-south-1  # Replace with your AWS region
+
+    - name: Update Kubeconfig
+      run: aws eks --region ap-south-1 update-kubeconfig --name devops
+
+    - name: Deploy Application to EKS
+      run: |
+        helm install mysql mysql/
