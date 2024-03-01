@@ -38,7 +38,7 @@ jobs:
           aws-region: ap-south-1
       - name: Update Kubeconfig
         run: >
-          aws eks --region ap-south-1 update-kubeconfig --name devops --role arn:aws:eks:ap-south-1:261393467661:cluster/devops
+          aws eks --region ap-south-1 update-kubeconfig --name devops --role arn:aws:iam::261393467661:role/education-eks-R8jX2BDL-cluster-20240220024542297900000003
 
           kubectl get nodes
 
