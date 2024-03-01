@@ -46,8 +46,7 @@ jobs:
         aws-region: ap-south-1  # Replace with your AWS region
 
     - name: Update Kubeconfig
-      run: aws eks --region ap-south-1 update-kubeconfig --name devops
-
-    - name: Deploy Application to EKS
       run: |
-        helm install mysql mysql/
+        aws eks --region ap-south-1 update-kubeconfig --name devops
+        kubectl get nodes
+        helm install mysql /home/runner/work/Calculator/Calculator/mysql-0.1.0.tgz
