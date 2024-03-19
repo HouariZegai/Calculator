@@ -108,7 +108,7 @@ Docker will only support single application deployment.
 -> Dockerfile ---> Group of instructions
 
 Docker Commands:
-
+'''
 -> Docker info ---- we can see the config/details about docker
 -> Docker images ---- to see list of docker images
 -> Docker rmi <imagename> --- to delete specific docker image
@@ -122,4 +122,4 @@ Docker Commands:
 -> docker exec -it <containername> /bin/bash  ------ to login into container
 -> docker stats <containername> ---- you can see the resource utilization cpu/ram/memory
 -> docker system prune ---- unused images/containers will be deleted
--> docker run -it --name <containername> --privileged=true --volumes-from <oldcontainer> <images> /bin/bash
+-> docker run -it --name <containername> --privileged=true --volumes-from <oldcontainer> <images> /bin/bash '''
