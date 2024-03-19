@@ -97,10 +97,10 @@ Docker will only support single application deployment.
 
 -> hardware-==> kernel OS----->Docker engine---->Application
 -> Install docker on linux machine
-    * sudo yum install docker -y  (Install docker on our VM)
-    * sudo systemctl start docker  (will start the docker service)
-    * sudo systemctl enable docker (if we stop the VM docker service also will stop and once VM is start automatically it will start the docker service as well)
-    * sudo systemctl restart docker (to restart the docker service)
+    * sudo yum install docker -y  (Install docker on our VM).
+    * sudo systemctl start docker  (will start the docker service).
+    * sudo systemctl enable docker (if we stop the VM docker service also will stop and once VM is start automatically it will start the docker service as well).
+    * sudo systemctl restart docker (to restart the docker service).
 
 -> Docker engine ---> which containes docker config and which heps to run the docker service
 -> Docker Repository --> were you can store the docker images (here we can do pull/push mechanism)
@@ -108,10 +108,10 @@ Docker will only support single application deployment.
 -> Dockerfile ---> Group of instructions
 
 Docker Commands:
--> Docker info ---- we can see the config/details about docker
--> Docker images ---- to see list of docker images
--> Docker rmi <imagename> --- to delete specific docker image
--> Docker build -it <imagename> . ----to build docker image from dockerfile
+-> **Docker info** ---- we can see the config/details about docker
+-> **Docker images** ---- to see list of docker images
+-> **Docker rmi <imagename>** --- to delete specific docker image
+-> **Docker build -it <imagename> .** ----to build docker image from dockerfile
 -> docker ps --- it will show the running containers
 -> docker ps -a -- it will show both stop and running containers.
 -> docker rm <containername> --- delete docker container (make sure container should be in stop state)
