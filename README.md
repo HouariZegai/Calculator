@@ -89,7 +89,7 @@ Linux:
 -> Make sure execute maven command were the POM file is.
 Sample Repo: https://github.com/Renukadema/Calculator.git 
 
-===================================================================================================================================================================
+==================================================================================================================================================================
 What is Docker?
 Docker is light weight container, were you can build and run your application on docker.
 Docker is very fast in build and running application.
@@ -108,7 +108,6 @@ Docker will only support single application deployment.
 -> Dockerfile ---> Group of instructions
 
 Docker Commands:
-'''
 -> Docker info ---- we can see the config/details about docker
 -> Docker images ---- to see list of docker images
 -> Docker rmi <imagename> --- to delete specific docker image
