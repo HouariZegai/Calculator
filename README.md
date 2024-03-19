@@ -121,4 +121,4 @@ Docker Commands:
 -> docker exec -it <containername> /bin/bash  ------ to login into container
 -> docker stats <containername> ---- you can see the resource utilization cpu/ram/memory
 -> docker system prune ---- unused images/containers will be deleted
--> docker run -it --name <containername> --privileged=true --volumes-from <oldcontainer> <images> /bin/bash '''
+-> docker run -it --name <containername> --privileged=true --volumes-from <oldcontainer> <images> /bin/bash 
