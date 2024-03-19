@@ -89,4 +89,37 @@ Linux:
 -> Make sure execute maven command were the POM file is.
 Sample Repo: https://github.com/Renukadema/Calculator.git 
 
-============================================================================================================================================================================================================
+===================================================================================================================================================================
+What is Docker?
+Docker is light weight container, were you can build and run your application on docker.
+Docker is very fast in build and running application.
+Docker will only support single application deployment.
+
+-> hardware-==> kernel OS----->Docker engine---->Application
+-> Install docker on linux machine
+    sudo yum install docker -y  (Install docker on our VM)
+    sudo systemctl start docker  (will start the docker service)
+    sudo systemctl enable docker (if we stop the VM docker service also will stop and once VM is start automatically it will start the docker service as well)
+    sudo systemctl restart docker (to restart the docker service)
+
+-> Docker engine ---> which containes docker config and which heps to run the docker service
+-> Docker Repository --> were you can store the docker images (here we can do pull/push mechanism)
+-> Docker images -> we can build docker image using docker file 
+-> Dockerfile ---> Group of instructions
+
+Docker Commands:
+
+-> Docker info ---- we can see the config/details about docker
+-> Docker images ---- to see list of docker images
+-> Docker rmi <imagename> --- to delete specific docker image
+-> Docker build -it <imagename> . ----to build docker image from dockerfile
+-> docker ps --- it will show the running containers
+-> docker ps -a -- it will show both stop and running containers.
+-> docker rm <containername> --- delete docker container (make sure container should be in stop state)
+-> docker run -it --name <containername> <imagename> /bin/bash
+-> docker commit <containerid> ---- from this we can build docker image
+-> docker logs -f <containername> ----- to see container logs
+-> docker exec -it <containername> /bin/bash  ------ to login into container
+-> docker stats <containername> ---- you can see the resource utilization cpu/ram/memory
+-> docker system prune ---- unused images/containers will be deleted
+-> docker run -it --name <containername> --privileged=true --volumes-from <oldcontainer> <images> /bin/bash
