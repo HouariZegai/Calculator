@@ -122,3 +122,53 @@ Docker Commands:
 -> docker stats <containername> ---- you can see the resource utilization cpu/ram/memory
 -> docker system prune ---- unused images/containers will be deleted
 -> docker run -it --name <containername> --privileged=true --volumes-from <oldcontainer> <images> /bin/bash 
+========================================================================================================================================================
+
+Docker ----> 
+ 
+-> Docker is containerised tool which helps to build and run your application as a container.
+-> Using Docker we can build our application as a docker image.
+-> Docker is very fast in building and running our application compare to other tools.
+
+-> Docker Structure 
+    -> Hardware----Kernel OS---Docker Engine---Applications.
+
+-> Docker will helps to run only single container at a time.
+
+-> DockerFile ---             Group of instructions to build docker image.
+-> Docker Engine ----         which contains entire docker configuration
+-> Docker Repository ---      Were we can store our docker images by using (pull/push) commands.
+                              We have both public and private repository's
+-> Docker Service ---         Which helps you to run Docker and execute the docker commands
+-> Docker Container ---       Container is nothing but a Software were we can easily deploy.
+
+Install Docker:  (Linux)                  -> Enterprise version (Practice)
+->  sudo yum install docker -y             -> it will install docker service on Linux VM.
+    sudo systemctl start docker           -> to start docker service on VM
+    sudo systemctl enable docker          -> To start docker service automatically when th VM is start and stop
+    sudo systemctl status docker          -> to check the status of docker 
+    sudo systemctl restart docker         -> to restart docker service
+    sudo systemctl stop docker            -> to stop the docker service 
+
+-> Docker Commands:
+
+docker images                                    -> to see list of docker images
+docker ps                                        -> to see running containers
+docker ps -a                                     -> to see both stop/running containers
+docker rmi <imagename/imageID>                   -> to delete the docker image (rmi --- remove image)
+docker rm <containerID>                          -> to delete container (make sure we can delete only stopped containers)
+docker start <containerID>                       -> to start docker container
+docker stop <continerID>                         -> to stop container
+docker pause/unpause <containerID>               -> to pause/unpause container
+docker build -t <imagename> .                    -> to build docker image from dockerfile (-t=terminal, . path of dockerfile)
+docker create image  -> container creation
+docker run -it --name <newcontainername>  <image> /bin/bash   (-it= interactive terminal) -> to create container from docker image
+docker commit <containerID>  <newimagename>      -> to create image from container
+docker exec -it <containername> /bin/bash        -> to login inside container
+docker logs -f <containerID>                     -> to see the container logs
+docker system prune                              -> to remove unused images and containers
+docker images prune -a                           ->it will clean all images
+docker info                                      ->to see the docker information installed on system
+docker stats <cintainerID>                       -> to see container resource (cpu, mm, space....)
+
+============================================================================================================================================
