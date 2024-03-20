@@ -40,43 +40,35 @@ pipeline {
         stage('Helm Package') {
             steps {
                 sh '''#!/bin/bash
+                helm create calculator
                 helm package calculator
             '''
-            }
-        }
-        stage('Kubernetes Setup') {
-            steps {
-                // Use Kubernetes plugin to set up the connection to EKS
-                withKubeConfig(credentialsId: aws-credentials, clusterName: awseks, serverUrl: 'https://B8D3E5A4AEA99EA3C2C5693199C1ADF2.gr7.ap-south-1.eks.amazonaws.com') {
-                    // Check kubectl version
-                    sh 'kubectl version'
-                }
-            }
-        }
-        stage('Install Helm Chart') {
-            steps {
-                // Install Helm and initialize Helm
-                sh 'helm init --client-only'
-                
-                // Add Helm repository if necessary
-                sh 'helm repo add stable https://charts.helm.sh/stable'
-                
-                // Install Helm chart
-                sh 'helm install calculator calculator --namespace=default'
             }
         }
         stage('AWS EKS Authentication') {
             steps {
                 withAWS(region: 'ap-south-1', credentials: 'aws-credentials') {
                     sh "aws eks --region ap-south-1 update-kubeconfig --name awseks"
-                    sh "helm install calculator calculator"
                 }
             }
         }
-        stage('Verify Deployment') {
+        stage('Kubernetes Setup') {
             steps {
-                sh 'kubectl get nodes'
-                sh 'kubectl get pods'
+                // Use Kubernetes plugin to set up the connection to EKS
+                withKubeConfig(credentialsId: 'K8S', clusterName: 'awseks', serverUrl: 'https://B8D3E5A4AEA99EA3C2C5693199C1ADF2.gr7.ap-south-1.eks.amazonaws.com') {
+                }
+            }
+        }
+        stage('Install Helm Chart') {
+            steps {
+                // Install Helm and initialize Helm
+                sh 'helm lint calculator'
+                
+                // Add Helm repository if necessary
+                sh 'helm repo add stable https://charts.helm.sh/stable'
+                
+                // Install Helm chart
+                //sh 'helm install calculator calculator --namespace=default'
             }
         }
     }
