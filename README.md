@@ -172,3 +172,55 @@ docker info                                      ->to see the docker information
 docker stats <cintainerID>                       -> to see container resource (cpu, mm, space....)
 
 ============================================================================================================================================
+**SonarQube** -> Security tool
+-To scan our code in the repository.
+-Sonar Qube will helps us to find the bugs, vurnabilities and code related issues.
+-Sonar report will be uploaded to Sonar Hub
+-Reports will assigned to developers.
+
+->download and install SonarQube
+
+->wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip?_gl=1*1k01es0*_gcl_au*NDcxMDQ0MTA2LjE3MDQ4NTA0NTg.*_ga*MzQ3NDcyODQ5LjE3MDQ4NTA0NTg.*_ga_9JZ0GZ5TC6*MTcxMTAwMzk3Ny45LjEuMTcxMTAwNDAwMS4zNi4wLjA.
+
+->sudo mv sonarqube-10.4.1.88267.zip\?_gl\=1\*1k01es0\*_gcl_au\*NDcxMDQ0MTA2LjE3MDQ4NTA0NTg.\*_ga\*MzQ3NDcyODQ5LjE3MDQ4NTA0NTg.\*_ga_9JZ0GZ5TC6\*MTcxMTAwMzk3Ny45LjEuMTcxMTAwNDAwMS4zNi4wLjA. sonar.zip
+
+-> sudo unzip sonar.zip
+
+-> cd sonarqube-10.4.1.88267/bin/linux-x86-64/
+   -> ll
+   ->  sudo ./sonar.sh start
+   ->  sudo yum install maven -y (to setup java on this)
+   ->  sudo ./sonar.sh start
+   ->  sudo ./sonar.sh stop
+   ->  sudo ./sonar.sh start
+Use IP Address of VM with PORT number
+http://IPAddress:9000/         (9000 --- default port for Sonar)
+
+==============================================================================================================================
+**Helm**
+-> Using helm we are creating packages (.tgz) 
+-> Using helm we can install, upgrade, and deploy our application on Kubernetes Cluster.
+-> Helm package/helm chart both are same.
+-> Helm Folder Structure 
+    -> helm -> whatsapp -> chart.yaml
+                        -> Values.yaml
+                        -> templates folder -> service.yaml
+                                               deployment.yaml
+                                               database.yaml
+                                               secrets
+
+-> Helm create whatsapp (it will create hel folder structure)
+-> helm lint whatsapp   (to verify the folder structure or syntax for helm)
+-> helm package whatsapp (it will generate .tgz file)
+-> helm install whatsapp whatsapp-1.0.0.tgz (it will install chart on our cluster for first time)
+-> helm upgrade --install whatsapp whatsapp-1.0.0.tgz (upgrade/second time installation od same chart with new version)
+-> helm ls
+-> helm uninstall whatsapp (delete/uninstall the chart from cluster).
+
+Install helm on linux VM:
+- sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+- sudo chmod 700 get_helm.sh
+- sudo ./get_helm.sh
+
+
+
