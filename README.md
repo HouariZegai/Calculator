@@ -172,13 +172,13 @@ docker info                                      ->to see the docker information
 docker stats <cintainerID>                       -> to see container resource (cpu, mm, space....)
 
 ============================================================================================================================================
-**SonarQube** -> Security tool
+**SonarQube** -> Security tool - https://techexpert.tips/sonarqube/sonarqube-scanner-installation-ubuntu-linux/ 
 -To scan our code in the repository.
 -Sonar Qube will helps us to find the bugs, vurnabilities and code related issues.
 -Sonar report will be uploaded to Sonar Hub
 -Reports will assigned to developers.
 
-->download and install SonarQube
+->**download and install SonarQube on linux **
 
 ->wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip?_gl=1*1k01es0*_gcl_au*NDcxMDQ0MTA2LjE3MDQ4NTA0NTg.*_ga*MzQ3NDcyODQ5LjE3MDQ4NTA0NTg.*_ga_9JZ0GZ5TC6*MTcxMTAwMzk3Ny45LjEuMTcxMTAwNDAwMS4zNi4wLjA.
 
@@ -195,6 +195,27 @@ docker stats <cintainerID>                       -> to see container resource (c
    ->  sudo ./sonar.sh start
 Use IP Address of VM with PORT number
 http://IPAddress:9000/         (9000 --- default port for Sonar)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-> **Download and install sonar on Ubuntu**
+
+sudo mkdir /downloads/sonarqube -p
+sudo cd /downloads/sonarqube
+sudo wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip
+sudo unzip sonar-scanner-cli-4.2.0.1873-linux.zip
+sudo mv sonar-scanner-4.2.0.1873-linux /opt/sonar-scanner
+sudo vi /opt/sonar-scanner/conf/sonar-scanner.properties
+         sonar.host.url=http://localhost:9000
+         sonar.sourceEncoding=UTF-8
+
+sudo vi /etc/profile.d/sonar-scanner.sh
+        #/bin/bash
+        export PATH="$PATH:/opt/sonar-scanner/bin"
+
+sudo reboot
+sudo source /etc/profile.d/sonar-scanner.sh
+
+sonar-scanner -v
 
 ==============================================================================================================================
 **Helm**
@@ -221,6 +242,25 @@ Install helm on linux VM:
 - sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 - sudo chmod 700 get_helm.sh
 - sudo ./get_helm.sh
+==========================================================================================================================================
+-> Jenkins : 
 
+**Download and install jenkins on linux**
 
+-> sudo dnf update -y
+-> sudo dnf install java-17-amazon-corretto -y
+-> sudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+-> sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key 
+-> sudo dnf install jenkins -y
+-> sudo systemctl enable jenkins
+-> sudo systemctl start jenkins
+-> open your web browser and access Jenkins by navigating to:
+         http://your_amazon_linux_instance_ip:8080
+-> sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
+-> new item -> name -> pipeline -> pipeline script -> apply -> save -> Build Now -> logs -> console output.
+
+ Sample pipeline code
+
+ refer in ----> Jenkinsfile (same repo)
