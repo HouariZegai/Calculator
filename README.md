@@ -264,3 +264,29 @@ Install helm on linux VM:
  Sample pipeline code
 
  refer in ----> Jenkinsfile (same repo)
+ 
+===============================================================================================================================
+Kubernetes:
+
+connect to cluster
+  aws eks --update-kubeconfig --region=us-east-1 --name=eks   -> to connect to kubernetes cluster
+
+-> Kubectl get nodes                       -> to see the nodes under kubernetes
+-> kubectl get pods                        -> to see the pods running on cluster
+-> kubectl create namespace <name>         -> to create namespace in kubernetes cluster
+-> kubectl get ns                          -> to see list of namespaces
+-> kubectl describe pod <podname>          -> to describe the pods and check the event logs
+-> kubectl get svc                         -> to get the list of services
+-> kubectl get deployments                 -> to get the list of deployments
+-> kubectl get cm                          -> to get the list of configmaps
+-> kubectl get secrets                     -> to get the list of secrets
+-> kubectl describe secret <name>          -> to see th full info secret
+-> kubectl logs -f <podname>               -> to see the pod logs
+-> kubectl logs -f <podname> -c <containername> -> to the application logs
+-> kubectl delete pod <podname>             -> to restart the pod/container
+-> kubectl edit deployment <deploymentname> -> to edit the deployment for local changes testing
+-> kubectl get PV                           -> to get the list of persistent volumes
+-> kubectl get PVC                          -> to get the list of persistent volume claims
+-> kubectl exec -it <podname> bash          -> to login into container
+-> kubectl apply -f deployment.yaml         -> to execute/create the deployment
+-> kubectl apply -f service.yaml            -> to execute/create the service
