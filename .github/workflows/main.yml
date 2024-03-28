@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          
+      - name: Maven Build
+        run: mvn -Dmaven.test.failure.ignore=true clean package
+        
+      - name: SonarQube Analysis
+        run: mvn clean verify sonar:sonar -Dsonar.projectKey=Calculator -Dsonar.projectName='Calculator'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          
+      - name: Build Docker
+        run: |
+          docker build -t calculator . --file Dockerfile
+          docker tag calculator 261393467661.dkr.ecr.ap-south-1.amazonaws.com/calculator
+          # aws ecr login and push Docker image commands can be added here
+          
+      - name: Helm Package
+        run: helm package calculator
+        
+      - name: Kubernetes Setup
+        uses: azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+          version: 'latest'
+          cluster-name: 'awseks'
+          container-registry-url: 'https://B8D3E5A4AEA99EA3C2C5693199C1ADF2.gr7.ap-south-1.eks.amazonaws.com'
+          
+      - name: Install Helm Chart
+        run: |
+          helm init --client-only
+          helm repo add stable https://charts.helm.sh/stable
+          helm install calculator calculator --namespace=default
+          
+      - name: AWS EKS Authentication
+        run: |
+          aws eks --region ap-south-1 update-kubeconfig --name awseks
+          helm install calculator calculator
+          
+      - name: Verify Deployment
+        run: |
+          kubectl get nodes
+          kubectl get pods
