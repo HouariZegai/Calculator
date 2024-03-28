@@ -290,3 +290,56 @@ connect to cluster
 -> kubectl exec -it <podname> bash          -> to login into container
 -> kubectl apply -f deployment.yaml         -> to execute/create the deployment
 -> kubectl apply -f service.yaml            -> to execute/create the service
+
+what is kubernetes?
+-> which helps you to deploy multiple applications as a containers, auto scaling and manage our applications.
+
+**What is kubernetes components?**
+-> control plane (master node) ----kube API Server, kube Controll manager, kube-scheduler, etcd
+-> worker node --- kubelet, kube-proxy, container runtime.
+
+What is kubernetes pod?
+-> Running as a container on kubernete
+
+**What is deployment in kubernetes?**
+-> Deployment is nothing but converts application as a running container and it should manage the roll back machanism.
+
+**what is kubernetes namespace?**
+-> kubernetes namespace which helps you to seperate the multiple application deployments configurations.
+
+**what is kubernetes services?**
+-> Service load balancer ----- which manages the external acces to kubernetes service
+                               feature of load balancer -> SSL, Virtual Hosting, Ingress Routing -> which helps to route the traffic to kubernetes services.
+-> NodePort ---- which helps to access the application from external world and it expose the Node IP address
+                <NodeIP>:<NodePort>
+-> Cluster IP ---- exposes the service on each node based on internal IP address with in the cluster. 
+
+What is PV and PVC?
+-> PV is persistent volumes stoages available for the cluster.
+->PVC is persistent volume claim storages requested by user for storage which is bound to PV's.
+
+=======================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
